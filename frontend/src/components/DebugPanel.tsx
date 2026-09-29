@@ -48,7 +48,7 @@ export const DebugPanel: React.FC<DebugPanelProps> = ({
       <div className="debug-header" onClick={onToggle} style={{ cursor: 'pointer' }}>
         <div className="debug-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Terminal size={18} color="#38bdf8" />
-          <span>Hackathon Diagnostic Pipeline Inspector (Phase 7 Multi-Turn)</span>
+          <span>Diagnostic Pipeline Inspector</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94a3b8', fontSize: '0.85rem' }}>
           <span>{isOpen ? 'Collapse Pipeline' : 'Inspect Pipeline'}</span>

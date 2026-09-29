@@ -83,7 +83,7 @@ export const QueryInput: React.FC<QueryInputProps> = ({ onSubmit, isLoading }) =
       <div className="hero-section">
         <div className="hero-badge" aria-label="Prototype Identification">
           <Sparkles size={14} />
-          <span>Samsung PRISM Theme 2 — Smart Guided Troubleshooting Prototype</span>
+          <span>Smart Guided Troubleshooting Prototype</span>
         </div>
         <h1 className="hero-title">What problem are you experiencing?</h1>
         <p className="hero-subtitle">
@@ -132,7 +132,7 @@ export const QueryInput: React.FC<QueryInputProps> = ({ onSubmit, isLoading }) =
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
           <PlayCircle size={16} color="var(--primary)" />
           <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-            Evaluator Demo Scenarios (One-Click Test):
+            One-Click Test Scenarios:
           </span>
         </div>
 
@@ -176,10 +176,6 @@ export const QueryInput: React.FC<QueryInputProps> = ({ onSubmit, isLoading }) =
             );
           })}
         </div>
-      </div>
-
-      <div className="disclaimer-banner" style={{ marginTop: '1.5rem' }}>
-        <strong>Development Prototype Notice:</strong> SmartGuide operates on development datasets with local Neural Hybrid Retrieval and simulated One UI settings. All deep links use the safe <code>prototype://</code> scheme.
       </div>
     </div>
   );

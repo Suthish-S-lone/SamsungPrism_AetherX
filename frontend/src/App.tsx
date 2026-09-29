@@ -10,7 +10,6 @@ import { SimulatedSetting } from './components/SimulatedSetting';
 import { ResolutionFeedback } from './components/ResolutionFeedback';
 import { OutOfScopeView } from './components/OutOfScopeView';
 import { ErrorView } from './components/ErrorView';
-import { DebugPanel } from './components/DebugPanel';
 import { troubleshootQuery, continueTroubleshoot, checkBackendHealth } from './services/api';
 import type { Action, ClarificationOption, Context, StructuredTroubleshootResponse } from './types/api';
 
@@ -20,7 +19,6 @@ export const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<AppStep>('input');
   const [currentQuery, setCurrentQuery] = useState('');
   const [backendOnline, setBackendOnline] = useState(true);
-  const [debugMode, setDebugMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isClarifying, setIsClarifying] = useState(false);
 
@@ -176,12 +174,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      <Header
-        backendOnline={backendOnline}
-        debugMode={debugMode}
-        onToggleDebug={() => setDebugMode(!debugMode)}
-        onNewDiagnosis={handleNewDiagnosis}
-      />
+      <Header onNewDiagnosis={handleNewDiagnosis} />
 
       <main className="main-content">
         {/* Multi-Turn Diagnostic Progression Timeline */}
@@ -259,17 +252,6 @@ export const App: React.FC = () => {
             onMarkChecked={handleMarkSettingChecked}
           />
         )}
-
-        {/* Technical Diagnostics Inspector */}
-        <DebugPanel
-          debugInfo={apiResponse?.debug_info}
-          sessionId={apiResponse?.session_id}
-          turnCount={apiResponse?.turn_count}
-          maxTurns={apiResponse?.max_turns}
-          clarificationHistory={apiResponse?.clarification_history}
-          isOpen={debugMode}
-          onToggle={() => setDebugMode(!debugMode)}
-        />
       </main>
     </div>
   );
