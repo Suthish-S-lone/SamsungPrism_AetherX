@@ -67,7 +67,43 @@ export interface DiagnosticDebugMetadata {
   latency: LatencyBreakdown;
 }
 
+export interface ClarificationOption {
+  id: string;
+  label: string;
+  description?: string | null;
+  signal: string;
+  target_problem_id?: string | null;
+}
+
+export interface ClarificationQuestion {
+  id: string;
+  domain: string;
+  question: string;
+  prompt: string;
+  options: ClarificationOption[];
+  reason: string;
+}
+
+export interface TimelineEvent {
+  step: string;
+  label: string;
+  status: 'completed' | 'active' | 'pending';
+  detail?: string | null;
+  timestamp?: number | null;
+}
+
+export interface ContinueTroubleshootRequest {
+  session_id: string;
+  clarification_id?: string | null;
+  answer_id?: string | null;
+  user_response_text?: string | null;
+}
+
 export interface StructuredTroubleshootResponse {
+  status: 'diagnosis_ready' | 'clarification_required' | 'out_of_scope' | 'no_match' | 'error';
+  session_id?: string | null;
+  clarification?: ClarificationQuestion | null;
+  timeline?: TimelineEvent[] | null;
   contexts: Context[];
   fallback: string | null;
   debug_info?: DiagnosticDebugMetadata | null;

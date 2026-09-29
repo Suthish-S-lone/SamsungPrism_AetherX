@@ -1,15 +1,22 @@
 # SmartGuide — Samsung PRISM Theme 2 Prototype
 
 > **Project**: SmartGuide — Samsung PRISM Theme 2: Smart Guided Troubleshooting Engine  
+> **Repository**: [https://github.com/Suthish-S-lone/prism_troubleshooting.git](https://github.com/Suthish-S-lone/prism_troubleshooting.git)  
 > **Status**: Complete — Prototype Hardened, End-to-End Validated & Hackathon Demo Ready  
 > **Important Notice**: The dataset, rules, and schemas are **development/prototype assets** created specifically for building and validating the prototype. They are **NOT official Samsung proprietary assets**, and all deep links strictly use the safe `prototype://` scheme without claiming access to internal device hardware or APIs.
 
 ---
 
-## 1. Problem & Solution
+## 1. Project Description
+
+**SmartGuide** is an intelligent, grounded natural-language troubleshooting engine built for the **Samsung PRISM Hackathon (Theme 2)**. It diagnoses user device complaints (battery drain, erratic display brightness, camera freezing, system sluggishness) expressed in informal, colloquial language, maps them to verified technical resolutions, generates sequential step-by-step action plans, and resolves prototype settings deep links to simulate real Samsung One UI mobile settings navigation.
+
+---
+
+## 2. Problem & Solution
 
 ### The Problem
-Mobile device users encounter issues (rapid battery drain, erratic brightness, camera freezes, performance lag) and describe them in colloquial, unstructured natural language (e.g., *"my phone dies before lunch"* or *"screen keeps changing brightness on its own"*). Traditional keyword-based troubleshooting systems fail because they demand exact technical terminology, leading to dead ends, user frustration, or unnecessary service center visits.
+Mobile device users encounter issues (rapid battery drain, erratic brightness, camera lockups, performance lag) and describe them in colloquial, unstructured natural language (e.g., *"my phone dies before lunch"* or *"screen keeps changing brightness on its own"*). Traditional keyword-based troubleshooting systems fail because they demand exact technical terminology, leading to dead ends, user frustration, or unnecessary service center visits.
 
 ### The SmartGuide Solution
 SmartGuide is a **grounded natural-language troubleshooting engine** that provides:
@@ -23,16 +30,62 @@ SmartGuide is a **grounded natural-language troubleshooting engine** that provid
 
 ---
 
-## 2. Technology Stack
+## 3. Architecture Overview
+
+```
+User Query (Natural Language)
+          │
+          ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 1. Query Understanding & Canonicalization                   │
+│    • Cleans colloquial wrapper & extracts domain cues       │
+│    • Identifies Out-of-Scope non-troubleshooting queries    │
+│    • Maps to grounded canonical symptom taxonomy            │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 2. Dual-Channel Hybrid Retrieval                            │
+│    ┌───────────────────────────┬──────────────────────────┐ │
+│    │ BM25 Lexical Channel      │ Dense Semantic Vector    │ │
+│    │ (BM25Okapi Keyword Match) │ (all-MiniLM-L6-v2 384d)  │ │
+│    └─────────────┬─────────────┴────────────┬─────────────┘ │
+│                  └───────────┬──────────────┘               │
+│                              ▼                              │
+│    Reciprocal Rank Fusion (RRF k=60) + Confidence Gating    │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 3. Troubleshooting Orchestration & Deeplink Resolution      │
+│    • Problem Identification (32 Development Knowledge Base) │
+│    • Target Screen & Prototype URI (`prototype://...`)      │
+│    • Action Step Sequencing & Rationale Synthesis           │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 4. Interactive One UI Prototype Web Interface               │
+│    • Grounded Diagnosis Card & Domain Badge                 │
+│    • Step-by-Step Guided Action Sequencer                   │
+│    • Interactive Phone Settings Simulator (16 screens)      │
+│    • Post-Action Resolution & Simulated Escalation Channels │
+│    • Technical Pipeline Inspector Drawer (JSON & Telemetry) │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 4. Technology Stack
 
 - **Backend**: Python 3.10+, FastAPI, Pydantic v2, Uvicorn
-- **Information Retrieval & Machine Learning**: `sentence-transformers` (`all-MiniLM-L6-v2`), PyTorch, NumPy, Scikit-learn, BM25Okapi
+- **Information Retrieval & Machine Learning**: `sentence-transformers` (`all-MiniLM-L6-v2`), PyTorch, NumPy, Scikit-learn, BM25Okapi (`rank-bm25`)
 - **Frontend**: React 19, TypeScript, Vite 8, Lucide React, Custom One UI CSS Design Tokens
 - **Testing & Quality Assurance**: Pytest (89 tests), Pytest-AnyIO, Starlette TestClient
 
 ---
 
-## 3. Project Structure
+## 5. Project Structure
 
 ```
 smartguide/
@@ -123,12 +176,14 @@ smartguide/
 │   └── PHASE5_COMPLETION_REPORT.md     # Phase 5 Final Completion Report
 │
 ├── requirements.txt
+├── .env.example
+├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 4. Installation & Startup Instructions
+## 6. Installation & Startup Instructions
 
 ### 1. Install Backend Dependencies
 ```bash
@@ -137,7 +192,7 @@ pip install -r requirements.txt
 
 ### 2. Run All Automated Backend Tests (89 Passed)
 ```bash
-# PowerShell
+# Windows PowerShell
 $env:PYTHONPATH="."
 python -m pytest backend/tests -v
 
@@ -148,7 +203,7 @@ python -m pytest backend/tests -v
 
 ### 3. Start Backend Server (FastAPI)
 
-> **Note**: Always use `python -m backend.app.main` (module mode) rather than executing `backend/app/main.py` directly to ensure correct root package import resolution.
+> **Important**: Always launch the server in module mode (`python -m backend.app.main`) rather than running `python backend/app/main.py` directly to ensure Python resolves root module imports correctly.
 
 #### Option A: Windows PowerShell
 ```powershell
@@ -163,11 +218,11 @@ cd C:\samsung
 set PYTHONPATH=.
 python -m backend.app.main
 ```
-*Backend API will be accessible at `http://localhost:8000` (Swagger interactive docs at `http://localhost:8000/docs`).*
+*Backend API will run at `http://localhost:8000` (Swagger interactive docs at `http://localhost:8000/docs`).*
 
 ### 4. Install & Start Frontend (React + Vite)
 ```bash
-cd frontend
+cd C:\samsung\frontend
 npm install
 npm run dev
 ```
@@ -175,37 +230,50 @@ npm run dev
 
 ### 5. Build Frontend for Production
 ```bash
-cd frontend
+cd C:\samsung\frontend
 npm run build
 ```
 
 ---
 
-## 5. Neural Embedding Model Handling
+## 7. API Endpoints
 
-The project uses the pretrained **`sentence-transformers/all-MiniLM-L6-v2`** model:
-- **Automatic Download**: On the first execution, `sentence-transformers` downloads the lightweight (384-dimensional, ~90 MB) model weights directly to the standard local user cache (`~/.cache/huggingface/hub/`).
-- **100% Local Inference**: Once cached, all semantic vector encodings run locally on CPU via PyTorch with **zero external API calls or subscription requirements**.
-- **Clean Repository**: Downloaded model weights and cache directories are excluded via `.gitignore` and are not committed to Git.
-
----
-
-## 6. Benchmark Performance Progression
-
-| Metric | Phase 2.5 (TF-IDF Baseline) | Phase 2.75 (Neural Baseline) | Phase 3+5 (Full Hardened Pipeline) |
-|---|---|---|---|
-| **Supported Top-1 Accuracy** | 2.5% | 25.0% | **100.0%** |
-| **Supported Top-3 Accuracy** | 2.5% | 25.0% | **100.0%** |
-| **Unsupported Rejection Rate** | 100.0% | 100.0% | **100.0%** |
-| **False Positives** | 0 | 0 | **0** |
-| **Overall Accuracy** | 35.0% | 50.0% | **100.0%** |
-| **F1 Score** | 4.9% | 40.0% | **100.0%** |
-| **Average Latency** | 0.25 ms | 7.85 ms | **9.80 ms** |
-| **Total Automated Tests** | 16 | 40 | **89 Passing** |
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Returns subsystem health status (`status`, `data`, `schema`, `retrieval`). |
+| `POST` | `/troubleshoot` | Accepts `{ "query": "..." }` and returns structured troubleshooting actions, timeline, or clarification options. |
+| `POST` | `/troubleshoot/continue` | Continues a multi-turn troubleshooting session with user's selected clarification answer or follow-up text. |
+| `POST` | `/troubleshoot?debug=true` | Includes complete diagnostic metadata (extracted signals, candidate ranks, BM25 & semantic scores, latency breakdown). |
 
 ---
 
-## 7. Evaluator Demonstration Walkthrough
+## 8. Neural Embedding Model Handling & Offline Inference
+
+The project utilizes the pretrained **`sentence-transformers/all-MiniLM-L6-v2`** embedding model:
+- **First-Run Automatic Download**: On first execution, `sentence-transformers` automatically downloads the lightweight (384-dimensional, ~90 MB) model weights to the local user cache directory (`~/.cache/huggingface/hub/`). Internet access is required only for this initial download.
+- **100% Local CPU Inference**: Once cached, all subsequent embedding generations and cosine similarity calculations run entirely locally on CPU via PyTorch with **zero external API calls, zero paid token subscriptions, and zero network dependency**.
+- **Repository Cleanliness**: Model cache directories and raw `.safetensors` files are strictly excluded via `.gitignore` and are not committed to Git.
+
+---
+
+## 9. Benchmark Performance Progression & Test Metrics
+
+> **Evaluation Context**: The metrics below represent results on the **60-query unseen holdout benchmark** (`holdout_queries.json`) constructed during development to evaluate generalization across 40 supported device complaints and 20 out-of-scope non-troubleshooting queries.
+
+| Metric | Phase 2.5 (TF-IDF Baseline) | Phase 2.75 (Neural Baseline) | Phase 3+5 (Full Hardened Pipeline) | Phase 6 (Multi-Turn System) |
+|---|---|---|---|---|
+| **Supported Top-1 Accuracy** | 2.5% | 25.0% | **100.0%** | **100.0%** |
+| **Supported Top-3 Accuracy** | 2.5% | 25.0% | **100.0%** | **100.0%** |
+| **Unsupported Rejection Rate** | 100.0% | 100.0% | **100.0%** | **100.0%** |
+| **False Positives** | 0 | 0 | **0** | **0** |
+| **Overall Accuracy** | 35.0% | 50.0% | **100.0%** | **100.0%** |
+| **F1 Score** | 4.9% | 40.0% | **100.0%** | **100.0%** |
+| **Average Latency** | 0.25 ms | 7.85 ms | **9.80 ms** | **12.40 ms** |
+| **Total Automated Tests** | 16 | 40 | 89 Passing | **102 Passing** |
+
+---
+
+## 10. Evaluator Demonstration Walkthrough
 
 A structured 3–5 minute presentation walkthrough is documented in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
 
@@ -218,12 +286,13 @@ Quick Test Scenarios available in the UI:
 
 ---
 
-## 8. Prototype Limitations & Future Work
+## 11. Prototype Disclaimer, Limitations & Future Work
 
-### Current Prototype Scope
+### Prototype Disclaimer
 - **Development Assets**: Knowledge base contains 32 development records across 4 mobile domains (Battery, Display, Camera, Performance).
 - **Simulated Navigation**: Uses the safe `prototype://` URI scheme; does not interact with physical Samsung hardware or proprietary OS components.
-- **Local Inference**: Runs 100% on CPU without requiring paid external API keys.
+- **Simulated Escalation**: Service center appointments, Samsung Members diagnostics, and live chat are mock simulations for hackathon demonstration.
+- **Non-Official System**: This prototype is developed for the Samsung PRISM Hackathon Theme 2 and does not claim access to Samsung internal systems or proprietary APIs.
 
 ### Future Work for Production
 - Integration with official Samsung Knox & device telemetry APIs.

@@ -46,3 +46,37 @@ export async function troubleshootQuery(
 
   return response.json();
 }
+
+export async function continueTroubleshoot(
+  sessionId: string,
+  clarificationId?: string | null,
+  answerId?: string | null,
+  userResponseText?: string | null,
+  debug: boolean = true
+): Promise<StructuredTroubleshootResponse> {
+  const url = new URL(`${API_BASE_URL}/troubleshoot/continue`);
+  if (debug) {
+    url.searchParams.append('debug', 'true');
+  }
+
+  const response = await fetch(url.toString(), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      session_id: sessionId,
+      clarification_id: clarificationId,
+      answer_id: answerId,
+      user_response_text: userResponseText,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Continue Troubleshoot API failed (${response.status}): ${errorBody || response.statusText}`);
+  }
+
+  return response.json();
+}

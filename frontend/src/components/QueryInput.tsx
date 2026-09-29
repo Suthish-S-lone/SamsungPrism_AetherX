@@ -7,15 +7,24 @@ interface QueryInputProps {
 }
 
 interface DemoScenario {
-  domain: 'Battery' | 'Display' | 'Camera' | 'Performance' | 'Out-of-Scope';
+  domain: 'Battery' | 'Display' | 'Camera' | 'Performance' | 'Out-of-Scope' | 'Multi-Turn';
   label: string;
   icon: React.ComponentType<{ size?: number; color?: string; className?: string }>;
   query: string;
   expectedOutcome: string;
   isOutOfScope?: boolean;
+  isMultiTurn?: boolean;
 }
 
 const EVALUATOR_DEMO_SCENARIOS: DemoScenario[] = [
+  {
+    domain: 'Multi-Turn',
+    label: 'Thermal Ambiguity (Phase 6)',
+    icon: Sparkles,
+    query: 'My phone gets really hot',
+    expectedOutcome: 'Triggers multi-turn clarification options to pinpoint exact thermal cause',
+    isMultiTurn: true,
+  },
   {
     domain: 'Battery',
     label: 'Battery Drain',

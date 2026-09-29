@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { QueryInput } from './components/QueryInput';
 import { LoadingState } from './components/LoadingState';
+import { ClarificationView } from './components/ClarificationView';
+import { ConversationTimeline } from './components/ConversationTimeline';
 import { DiagnosisCard } from './components/DiagnosisCard';
 import { GuidedWorkflow } from './components/GuidedWorkflow';
 import { SimulatedSetting } from './components/SimulatedSetting';
@@ -9,10 +11,10 @@ import { ResolutionFeedback } from './components/ResolutionFeedback';
 import { OutOfScopeView } from './components/OutOfScopeView';
 import { ErrorView } from './components/ErrorView';
 import { DebugPanel } from './components/DebugPanel';
-import { troubleshootQuery, checkBackendHealth } from './services/api';
-import type { Action, Context, StructuredTroubleshootResponse } from './types/api';
+import { troubleshootQuery, continueTroubleshoot, checkBackendHealth } from './services/api';
+import type { Action, ClarificationOption, Context, StructuredTroubleshootResponse } from './types/api';
 
-type AppStep = 'input' | 'loading' | 'diagnosis' | 'workflow' | 'feedback' | 'out_of_scope' | 'error';
+type AppStep = 'input' | 'loading' | 'clarification' | 'diagnosis' | 'workflow' | 'feedback' | 'out_of_scope' | 'error';
 
 export const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<AppStep>('input');
@@ -20,6 +22,7 @@ export const App: React.FC = () => {
   const [backendOnline, setBackendOnline] = useState(true);
   const [debugMode, setDebugMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isClarifying, setIsClarifying] = useState(false);
 
   // API Response state
   const [apiResponse, setApiResponse] = useState<StructuredTroubleshootResponse | null>(null);
@@ -47,7 +50,10 @@ export const App: React.FC = () => {
       setApiResponse(response);
       setBackendOnline(true);
 
-      if (response.contexts && response.contexts.length > 0) {
+      if (response.status === 'clarification_required' && response.clarification) {
+        setActiveContext(null);
+        setCurrentStep('clarification');
+      } else if (response.contexts && response.contexts.length > 0) {
         setActiveContext(response.contexts[0]);
         setCurrentActionIndex(0);
         setCompletedActions([]);
@@ -61,6 +67,70 @@ export const App: React.FC = () => {
       setErrorMessage(err.message || 'Failed to connect to diagnostic backend.');
       setBackendOnline(false);
       setCurrentStep('error');
+    }
+  };
+
+  const handleSelectClarificationOption = async (option: ClarificationOption) => {
+    if (!apiResponse?.session_id) return;
+    setIsClarifying(true);
+    setErrorMessage('');
+
+    try {
+      const response = await continueTroubleshoot(
+        apiResponse.session_id,
+        apiResponse.clarification?.id,
+        option.id,
+        null,
+        true
+      );
+      setApiResponse(response);
+
+      if (response.contexts && response.contexts.length > 0) {
+        setActiveContext(response.contexts[0]);
+        setCurrentActionIndex(0);
+        setCompletedActions([]);
+        setCurrentStep('diagnosis');
+      } else {
+        setActiveContext(null);
+        setCurrentStep('out_of_scope');
+      }
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Failed to refine diagnosis.');
+      setCurrentStep('error');
+    } finally {
+      setIsClarifying(false);
+    }
+  };
+
+  const handleSubmitCustomClarification = async (customText: string) => {
+    if (!apiResponse?.session_id) return;
+    setIsClarifying(true);
+    setErrorMessage('');
+
+    try {
+      const response = await continueTroubleshoot(
+        apiResponse.session_id,
+        apiResponse.clarification?.id,
+        null,
+        customText,
+        true
+      );
+      setApiResponse(response);
+
+      if (response.contexts && response.contexts.length > 0) {
+        setActiveContext(response.contexts[0]);
+        setCurrentActionIndex(0);
+        setCompletedActions([]);
+        setCurrentStep('diagnosis');
+      } else {
+        setActiveContext(null);
+        setCurrentStep('out_of_scope');
+      }
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Failed to refine diagnosis.');
+      setCurrentStep('error');
+    } finally {
+      setIsClarifying(false);
     }
   };
 
@@ -114,12 +184,27 @@ export const App: React.FC = () => {
       />
 
       <main className="main-content">
+        {/* Multi-Turn Diagnostic Progression Timeline */}
+        {currentStep !== 'input' && currentStep !== 'loading' && apiResponse?.timeline && (
+          <ConversationTimeline timeline={apiResponse.timeline} />
+        )}
+
         {currentStep === 'input' && (
           <QueryInput onSubmit={handleDiagnose} isLoading={false} />
         )}
 
         {currentStep === 'loading' && (
           <LoadingState query={currentQuery} />
+        )}
+
+        {currentStep === 'clarification' && apiResponse?.clarification && (
+          <ClarificationView
+            clarification={apiResponse.clarification}
+            isLoading={isClarifying}
+            onSelectOption={handleSelectClarificationOption}
+            onSubmitCustom={handleSubmitCustomClarification}
+            onCancel={handleNewDiagnosis}
+          />
         )}
 
         {currentStep === 'diagnosis' && activeContext && (

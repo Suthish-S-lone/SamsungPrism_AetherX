@@ -10,6 +10,8 @@ It does NOT claim to represent official Samsung API contracts.
 from typing import List, Literal, Optional
 from pydantic import BaseModel, Field
 
+from backend.app.models.conversation import ClarificationQuestion, TimelineEvent
+
 
 class Step(BaseModel):
     """A single step in a troubleshooting action plan."""
@@ -52,9 +54,21 @@ class Context(BaseModel):
 class TroubleshootResponse(BaseModel):
     """Top-level prototype troubleshooting response model.
 
-    Prototype schema — not official Samsung schema.
+    Supports both single-turn and multi-turn interactive conversation flows.
     """
 
+    status: Literal["diagnosis_ready", "clarification_required", "out_of_scope", "no_match", "error"] = Field(
+        default="diagnosis_ready", description="Current status of the troubleshooting request"
+    )
+    session_id: Optional[str] = Field(
+        default=None, description="Active session ID for continuing the troubleshooting conversation"
+    )
+    clarification: Optional[ClarificationQuestion] = Field(
+        default=None, description="Clarification question when ambiguity exists and confidence is low"
+    )
+    timeline: Optional[List[TimelineEvent]] = Field(
+        default=None, description="Diagnostic progression timeline events"
+    )
     contexts: List[Context] = Field(
         default_factory=list,
         description="Ranked troubleshooting contexts addressing the user query",
