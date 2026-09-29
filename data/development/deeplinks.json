@@ -1,0 +1,162 @@
+[
+  {
+    "id": "prototype_dl_001",
+    "name": "Review battery settings",
+    "description": "Review settings relevant to the reported issue: battery drains quickly.",
+    "message": "Review battery settings",
+    "qna_description": "Review settings relevant to the reported issue: battery drains quickly.",
+    "target_screen": "Battery > Battery usage",
+    "uri": "prototype://settings/battery/battery_usage",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_002",
+    "name": "Review battery settings",
+    "description": "Review settings relevant to the reported issue: charging is slower than expected.",
+    "message": "Review battery settings",
+    "qna_description": "Review settings relevant to the reported issue: charging is slower than expected.",
+    "target_screen": "Battery > Charging",
+    "uri": "prototype://settings/battery/charging",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_003",
+    "name": "Review battery settings",
+    "description": "Review settings relevant to the reported issue: power saving needs to be enabled.",
+    "message": "Review battery settings",
+    "qna_description": "Review settings relevant to the reported issue: power saving needs to be enabled.",
+    "target_screen": "Battery > Power saving",
+    "uri": "prototype://settings/battery/power_saving",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_004",
+    "name": "Review display settings",
+    "description": "Review settings relevant to the reported issue: screen brightness changes unexpectedly.",
+    "message": "Review display settings",
+    "qna_description": "Review settings relevant to the reported issue: screen brightness changes unexpectedly.",
+    "target_screen": "Display > Brightness",
+    "uri": "prototype://settings/display/brightness",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_005",
+    "name": "Review display settings",
+    "description": "Review settings relevant to the reported issue: screen turns off too quickly.",
+    "message": "Review display settings",
+    "qna_description": "Review settings relevant to the reported issue: screen turns off too quickly.",
+    "target_screen": "Display > Screen timeout",
+    "uri": "prototype://settings/display/screen_timeout",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_006",
+    "name": "Review display settings",
+    "description": "Review settings relevant to the reported issue: navigation gestures behave unexpectedly.",
+    "message": "Review display settings",
+    "qna_description": "Review settings relevant to the reported issue: navigation gestures behave unexpectedly.",
+    "target_screen": "Display > Navigation",
+    "uri": "prototype://settings/display/navigation",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_007",
+    "name": "Review display settings",
+    "description": "Review settings relevant to the reported issue: touch interaction feels delayed.",
+    "message": "Review display settings",
+    "qna_description": "Review settings relevant to the reported issue: touch interaction feels delayed.",
+    "target_screen": "Display > Touch settings",
+    "uri": "prototype://settings/display/touch_settings",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_008",
+    "name": "Review display settings",
+    "description": "Review settings relevant to the reported issue: screen appearance needs adjustment.",
+    "message": "Review display settings",
+    "qna_description": "Review settings relevant to the reported issue: screen appearance needs adjustment.",
+    "target_screen": "Display > Screen mode",
+    "uri": "prototype://settings/display/screen_mode",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_009",
+    "name": "Review display settings",
+    "description": "Review settings relevant to the reported issue: accidental touches occur when the screen is in a pocket.",
+    "message": "Review display settings",
+    "qna_description": "Review settings relevant to the reported issue: accidental touches occur when the screen is in a pocket.",
+    "target_screen": "Display > Accidental touch protection",
+    "uri": "prototype://settings/display/accidental_touch_protection",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_010",
+    "name": "Review camera settings",
+    "description": "Review settings relevant to the reported issue: camera does not open correctly.",
+    "message": "Review camera settings",
+    "qna_description": "Review settings relevant to the reported issue: camera does not open correctly.",
+    "target_screen": "Camera > Camera settings",
+    "uri": "prototype://settings/camera/camera_settings",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_011",
+    "name": "Review camera settings",
+    "description": "Review settings relevant to the reported issue: camera storage behavior needs checking.",
+    "message": "Review camera settings",
+    "qna_description": "Review settings relevant to the reported issue: camera storage behavior needs checking.",
+    "target_screen": "Camera > Storage",
+    "uri": "prototype://settings/camera/storage",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_012",
+    "name": "Review camera settings",
+    "description": "Review settings relevant to the reported issue: camera permissions need to be checked.",
+    "message": "Review camera settings",
+    "qna_description": "Review settings relevant to the reported issue: camera permissions need to be checked.",
+    "target_screen": "Settings > App permissions > Camera",
+    "uri": "prototype://settings/settings/app_permissions/camera",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_013",
+    "name": "Review device performance settings",
+    "description": "Review settings relevant to the reported issue: device becomes slow after a software update.",
+    "message": "Review device performance settings",
+    "qna_description": "Review settings relevant to the reported issue: device becomes slow after a software update.",
+    "target_screen": "Device care > Performance",
+    "uri": "prototype://settings/device_care/performance",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_014",
+    "name": "Review device performance settings",
+    "description": "Review settings relevant to the reported issue: apps freeze or become unresponsive.",
+    "message": "Review device performance settings",
+    "qna_description": "Review settings relevant to the reported issue: apps freeze or become unresponsive.",
+    "target_screen": "Device care > Memory",
+    "uri": "prototype://settings/device_care/memory",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_015",
+    "name": "Review device performance settings",
+    "description": "Review settings relevant to the reported issue: device storage is nearly full.",
+    "message": "Review device performance settings",
+    "qna_description": "Review settings relevant to the reported issue: device storage is nearly full.",
+    "target_screen": "Device care > Storage",
+    "uri": "prototype://settings/device_care/storage",
+    "source": "development_prototype"
+  },
+  {
+    "id": "prototype_dl_016",
+    "name": "Review device performance settings",
+    "description": "Review settings relevant to the reported issue: an application causes performance problems.",
+    "message": "Review device performance settings",
+    "qna_description": "Review settings relevant to the reported issue: an application causes performance problems.",
+    "target_screen": "Settings > Apps",
+    "uri": "prototype://settings/settings/apps",
+    "source": "development_prototype"
+  }
+]

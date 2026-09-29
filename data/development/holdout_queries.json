@@ -1,0 +1,482 @@
+[
+  {
+    "id": "holdout_001",
+    "query": "I have to plug my phone into the wall multiple times throughout the day.",
+    "expected_problem_id": "battery_001",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_002",
+    "query": "The back panel becomes uncomfortably warm even when I am just reading emails.",
+    "expected_problem_id": "battery_002",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_003",
+    "query": "My phone has been connected to the power adapter for two hours and barely gained twenty percent.",
+    "expected_problem_id": "battery_003",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_004",
+    "query": "When I wake up in the morning, the power level has fallen by thirty percent overnight on my nightstand.",
+    "expected_problem_id": "battery_004",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_005",
+    "query": "A specific social media program seems to be chewing through all my power in the background.",
+    "expected_problem_id": "battery_005",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_006",
+    "query": "The remaining charge indicator suddenly tumbled from fifty percent down to fifteen percent in minutes.",
+    "expected_problem_id": "battery_006",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_007",
+    "query": "How do I turn on energy conservation mode so my charge lasts until tonight?",
+    "expected_problem_id": "battery_007",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_008",
+    "query": "Ever since installing yesterday firmware upgrade, my power efficiency has gotten noticeably worse.",
+    "expected_problem_id": "battery_008",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_009",
+    "query": "My mobile charge runs out before my evening commute starts.",
+    "expected_problem_id": "battery_001",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_010",
+    "query": "Fast charging is not kicking in when I connect the original cable.",
+    "expected_problem_id": "battery_003",
+    "expected_domain": "battery",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_011",
+    "query": "The panel randomly dims and then flares up to maximum illumination on its own.",
+    "expected_problem_id": "display_009",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_012",
+    "query": "The panel goes black almost immediately after I stop tapping on it.",
+    "expected_problem_id": "display_010",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_013",
+    "query": "The glass remains fully lit indefinitely even after I set the device down on the table.",
+    "expected_problem_id": "display_011",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_014",
+    "query": "Swiping up from the bottom of the glass to go home is completely unresponsive or triggers the wrong window.",
+    "expected_problem_id": "display_012",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_015",
+    "query": "I want to switch from swipe navigation back to classic three button layout at the bottom.",
+    "expected_problem_id": "display_013",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_016",
+    "query": "Typing on the on screen keyboard feels sluggish with noticeable input latency.",
+    "expected_problem_id": "display_014",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_017",
+    "query": "The display tint looks way too yellowish and warm under indoor lighting.",
+    "expected_problem_id": "display_015",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_018",
+    "query": "The phone keeps dialing emergency numbers and registering phantom taps while inside my trouser pocket.",
+    "expected_problem_id": "display_016",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_019",
+    "query": "Adaptive brightness sensor keeps making my screen unreadable outdoors.",
+    "expected_problem_id": "display_009",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_020",
+    "query": "My finger drags on the glass are lagging behind my physical movement.",
+    "expected_problem_id": "display_014",
+    "expected_domain": "display",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_021",
+    "query": "Tapping the photography icon shows a black window before crashing back to the home screen.",
+    "expected_problem_id": "camera_017",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_022",
+    "query": "The viewfinder completely locks up whenever I attempt to record a video clip.",
+    "expected_problem_id": "camera_018",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_023",
+    "query": "All my portrait snapshots turn out soft and out of focus even in bright daylight.",
+    "expected_problem_id": "camera_019",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_024",
+    "query": "Ever since the latest system patch, the photo capture software has developed strange glitches.",
+    "expected_problem_id": "camera_020",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_025",
+    "query": "How can I restore the photography app configurations back to factory defaults?",
+    "expected_problem_id": "camera_021",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_026",
+    "query": "It takes nearly five to ten seconds for the shutter interface to appear when I double press the power key.",
+    "expected_problem_id": "camera_022",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_027",
+    "query": "High resolution pictures and recordings are filling up the internal drive too quickly.",
+    "expected_problem_id": "camera_023",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_028",
+    "query": "The photo application claims it cannot access the hardware lens or microphone.",
+    "expected_problem_id": "camera_024",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_029",
+    "query": "Images captured under indoor lighting look muddy and lack sharpness.",
+    "expected_problem_id": "camera_019",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_030",
+    "query": "A warning popup says Camera failed whenever I launch the camera.",
+    "expected_problem_id": "camera_017",
+    "expected_domain": "camera",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_031",
+    "query": "The entire phone feels bogged down and stuttery following the OS upgrade.",
+    "expected_problem_id": "performance_025",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_032",
+    "query": "My daily apps keep throwing Application Not Responding popups.",
+    "expected_problem_id": "performance_026",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_033",
+    "query": "A system notification warns that disk space is critically low and downloads cannot complete.",
+    "expected_problem_id": "performance_027",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_034",
+    "query": "Background programs keep getting killed because available RAM is constantly depleted.",
+    "expected_problem_id": "performance_028",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_035",
+    "query": "Whenever a particular 3D game is active, the entire operating system slows to a crawl.",
+    "expected_problem_id": "performance_029",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_036",
+    "query": "Opening menus and scrolling through social feeds has severe frame drops and jank.",
+    "expected_problem_id": "performance_030",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_037",
+    "query": "Too many background syncing processes are hogging system resources.",
+    "expected_problem_id": "performance_031",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_038",
+    "query": "Ever since downloading that new file manager utility, phone responsiveness has tanked.",
+    "expected_problem_id": "performance_032",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_039",
+    "query": "Cannot take new photos or install updates because internal capacity is exhausted.",
+    "expected_problem_id": "performance_027",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_040",
+    "query": "Multitasking is impossible because switching between two apps forces a reload every time.",
+    "expected_problem_id": "performance_028",
+    "expected_domain": "performance",
+    "supported": true,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_041",
+    "query": "How do I set a custom MP3 song as my incoming ringtone?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_042",
+    "query": "I want to download a live aesthetic wallpaper for my lockscreen.",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_043",
+    "query": "How do I change the system language from English to Spanish?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_044",
+    "query": "Which protective case and tempered glass protector do you recommend for outdoor hiking?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_045",
+    "query": "Will it rain tomorrow in Seattle?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_046",
+    "query": "Can you give me a recipe for chocolate chip cookies?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_047",
+    "query": "What is the distance between the Earth and the Moon?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_048",
+    "query": "How do I order pizza using a delivery app?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_049",
+    "query": "I want to book flight tickets to Tokyo next month.",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_050",
+    "query": "How do I clean coffee stains off my phone leather wallet cover?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_051",
+    "query": "Can you write a poem about artificial intelligence?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_052",
+    "query": "Where can I find the serial number printed on the original retail packaging box?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_053",
+    "query": "How do I calculate compound interest for a mortgage loan?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_054",
+    "query": "Recommend me a good horror movie to watch this weekend.",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_055",
+    "query": "How do I configure a third party podcast feed URL?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_056",
+    "query": "I want to purchase additional physical warranty insurance from a retail store.",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_057",
+    "query": "How do I pair my Bluetooth car stereo with Spotify?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_058",
+    "query": "What is the exchange rate between US Dollars and Euros today?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_059",
+    "query": "How do I fold an origami paper crane?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  },
+  {
+    "id": "holdout_060",
+    "query": "Can you recommend a high protein vegetarian diet plan?",
+    "expected_problem_id": null,
+    "expected_domain": null,
+    "supported": false,
+    "source": "holdout_manual"
+  }
+]

@@ -1,0 +1,506 @@
+[
+  {
+    "id": "q_001",
+    "query": "Battery drains quickly",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_001",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_001",
+    "query": "Why is my phone having this problem: battery drains quickly?",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_001",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_003",
+    "query": "Device gets hot during normal use",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_002",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_003",
+    "query": "Why is my phone having this problem: device gets hot during normal use?",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_002",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_005",
+    "query": "Charging is slower than expected",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_003",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_005",
+    "query": "Why is my phone having this problem: charging is slower than expected?",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_003",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_007",
+    "query": "Battery drains while the device is idle",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_004",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_007",
+    "query": "Why is my phone having this problem: battery drains while the device is idle?",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_004",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_009",
+    "query": "An app is consuming excessive battery",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_005",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_009",
+    "query": "Why is my phone having this problem: an app is consuming excessive battery?",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_005",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_011",
+    "query": "Battery percentage drops unusually quickly",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_006",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_011",
+    "query": "Why is my phone having this problem: battery percentage drops unusually quickly?",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_006",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_013",
+    "query": "Power saving needs to be enabled",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_007",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_013",
+    "query": "Why is my phone having this problem: power saving needs to be enabled?",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_007",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_015",
+    "query": "Battery behavior changed after a software update",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_008",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_015",
+    "query": "Why is my phone having this problem: battery behavior changed after a software update?",
+    "expected_domain": "battery",
+    "expected_problem_id": "battery_008",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_017",
+    "query": "Screen brightness changes unexpectedly",
+    "expected_domain": "display",
+    "expected_problem_id": "display_009",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_017",
+    "query": "Why is my phone having this problem: screen brightness changes unexpectedly?",
+    "expected_domain": "display",
+    "expected_problem_id": "display_009",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_019",
+    "query": "Screen turns off too quickly",
+    "expected_domain": "display",
+    "expected_problem_id": "display_010",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_019",
+    "query": "Why is my phone having this problem: screen turns off too quickly?",
+    "expected_domain": "display",
+    "expected_problem_id": "display_010",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_021",
+    "query": "Screen stays on longer than expected",
+    "expected_domain": "display",
+    "expected_problem_id": "display_011",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_021",
+    "query": "Why is my phone having this problem: screen stays on longer than expected?",
+    "expected_domain": "display",
+    "expected_problem_id": "display_011",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_023",
+    "query": "Navigation gestures behave unexpectedly",
+    "expected_domain": "display",
+    "expected_problem_id": "display_012",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_023",
+    "query": "Why is my phone having this problem: navigation gestures behave unexpectedly?",
+    "expected_domain": "display",
+    "expected_problem_id": "display_012",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_025",
+    "query": "Navigation controls need to be changed",
+    "expected_domain": "display",
+    "expected_problem_id": "display_013",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_025",
+    "query": "Why is my phone having this problem: navigation controls need to be changed?",
+    "expected_domain": "display",
+    "expected_problem_id": "display_013",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_027",
+    "query": "Touch interaction feels delayed",
+    "expected_domain": "display",
+    "expected_problem_id": "display_014",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_027",
+    "query": "Why is my phone having this problem: touch interaction feels delayed?",
+    "expected_domain": "display",
+    "expected_problem_id": "display_014",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_029",
+    "query": "Screen appearance needs adjustment",
+    "expected_domain": "display",
+    "expected_problem_id": "display_015",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_029",
+    "query": "Why is my phone having this problem: screen appearance needs adjustment?",
+    "expected_domain": "display",
+    "expected_problem_id": "display_015",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_031",
+    "query": "Accidental touches occur when the screen is in a pocket",
+    "expected_domain": "display",
+    "expected_problem_id": "display_016",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_031",
+    "query": "Why is my phone having this problem: accidental touches occur when the screen is in a pocket?",
+    "expected_domain": "display",
+    "expected_problem_id": "display_016",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_033",
+    "query": "Camera does not open correctly",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_017",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_033",
+    "query": "Why is my phone having this problem: camera does not open correctly?",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_017",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_035",
+    "query": "Camera application freezes",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_018",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_035",
+    "query": "Why is my phone having this problem: camera application freezes?",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_018",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_037",
+    "query": "Camera photos look blurry",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_019",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_037",
+    "query": "Why is my phone having this problem: camera photos look blurry?",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_019",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_039",
+    "query": "Camera behavior changed after an update",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_020",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_039",
+    "query": "Why is my phone having this problem: camera behavior changed after an update?",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_020",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_041",
+    "query": "Camera settings need to be reset",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_021",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_041",
+    "query": "Why is my phone having this problem: camera settings need to be reset?",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_021",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_043",
+    "query": "Camera takes too long to start",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_022",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_043",
+    "query": "Why is my phone having this problem: camera takes too long to start?",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_022",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_045",
+    "query": "Camera storage behavior needs checking",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_023",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_045",
+    "query": "Why is my phone having this problem: camera storage behavior needs checking?",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_023",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_047",
+    "query": "Camera permissions need to be checked",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_024",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_047",
+    "query": "Why is my phone having this problem: camera permissions need to be checked?",
+    "expected_domain": "camera",
+    "expected_problem_id": "camera_024",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_049",
+    "query": "Device becomes slow after a software update",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_025",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_049",
+    "query": "Why is my phone having this problem: device becomes slow after a software update?",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_025",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_051",
+    "query": "Apps freeze or become unresponsive",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_026",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_051",
+    "query": "Why is my phone having this problem: apps freeze or become unresponsive?",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_026",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_053",
+    "query": "Device storage is nearly full",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_027",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_053",
+    "query": "Why is my phone having this problem: device storage is nearly full?",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_027",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_055",
+    "query": "Device has insufficient free memory",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_028",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_055",
+    "query": "Why is my phone having this problem: device has insufficient free memory?",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_028",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_057",
+    "query": "An application causes performance problems",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_029",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_057",
+    "query": "Why is my phone having this problem: an application causes performance problems?",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_029",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_059",
+    "query": "Device performance is generally sluggish",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_030",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_059",
+    "query": "Why is my phone having this problem: device performance is generally sluggish?",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_030",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_061",
+    "query": "Background activity affects performance",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_031",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_061",
+    "query": "Why is my phone having this problem: background activity affects performance?",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_031",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_063",
+    "query": "Performance changed after installing an application",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_032",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_063",
+    "query": "Why is my phone having this problem: performance changed after installing an application?",
+    "expected_domain": "performance",
+    "expected_problem_id": "performance_032",
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_065",
+    "query": "My phone speaker makes a strange noise when I shake it.",
+    "expected_domain": null,
+    "expected_problem_id": null,
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_066",
+    "query": "My phone has water damage and will not turn on.",
+    "expected_domain": null,
+    "expected_problem_id": null,
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_067",
+    "query": "I want to install an unsupported operating system.",
+    "expected_domain": null,
+    "expected_problem_id": null,
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_068",
+    "query": "Can my phone predict tomorrow's weather without internet?",
+    "expected_domain": null,
+    "expected_problem_id": null,
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_069",
+    "query": "My phone case is changing color.",
+    "expected_domain": null,
+    "expected_problem_id": null,
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_070",
+    "query": "I want to repair a cracked screen using household glue.",
+    "expected_domain": null,
+    "expected_problem_id": null,
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_071",
+    "query": "Can the phone read my dreams?",
+    "expected_domain": null,
+    "expected_problem_id": null,
+    "source": "development_prototype"
+  },
+  {
+    "id": "q_072",
+    "query": "The device should automatically cook my food.",
+    "expected_domain": null,
+    "expected_problem_id": null,
+    "source": "development_prototype"
+  }
+]

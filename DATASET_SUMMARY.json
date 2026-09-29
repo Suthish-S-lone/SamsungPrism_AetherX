@@ -1,0 +1,12 @@
+{
+  "troubleshooting_records": 32,
+  "development_deeplinks": 16,
+  "test_queries": 72,
+  "semantic_variation_groups": 32,
+  "domains": [
+    "battery",
+    "display",
+    "camera",
+    "performance"
+  ]
+}

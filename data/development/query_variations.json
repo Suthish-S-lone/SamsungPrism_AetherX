@@ -1,0 +1,546 @@
+[
+  {
+    "problem_id": "battery_001",
+    "canonical_query": "Battery drains quickly",
+    "query_variations": [
+      "Battery drains quickly",
+      "battery drains quickly",
+      "issue with battery usage",
+      "battery usage problem",
+      "phone battery usage",
+      "device battery usage",
+      "experiencing battery usage",
+      "my device has battery usage",
+      "help with battery usage",
+      "troubleshoot battery usage"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "battery_002",
+    "canonical_query": "Device gets hot during normal use",
+    "query_variations": [
+      "Device gets hot during normal use",
+      "device gets hot during normal use",
+      "issue with overheating",
+      "overheating problem",
+      "phone overheating",
+      "device overheating",
+      "experiencing overheating",
+      "my device has overheating",
+      "help with overheating",
+      "troubleshoot overheating"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "battery_003",
+    "canonical_query": "Charging is slower than expected",
+    "query_variations": [
+      "Charging is slower than expected",
+      "charging is slower than expected",
+      "issue with slow charging",
+      "slow charging problem",
+      "phone slow charging",
+      "device slow charging",
+      "experiencing slow charging",
+      "my device has slow charging",
+      "help with slow charging",
+      "troubleshoot slow charging"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "battery_004",
+    "canonical_query": "Battery drains while the device is idle",
+    "query_variations": [
+      "Battery drains while the device is idle",
+      "battery drains while the device is idle",
+      "issue with idle battery drain",
+      "idle battery drain problem",
+      "phone idle battery drain",
+      "device idle battery drain",
+      "experiencing idle battery drain",
+      "my device has idle battery drain",
+      "help with idle battery drain",
+      "troubleshoot idle battery drain"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "battery_005",
+    "canonical_query": "An app is consuming excessive battery",
+    "query_variations": [
+      "An app is consuming excessive battery",
+      "an app is consuming excessive battery",
+      "issue with app battery usage",
+      "app battery usage problem",
+      "phone app battery usage",
+      "device app battery usage",
+      "experiencing app battery usage",
+      "my device has app battery usage",
+      "help with app battery usage",
+      "troubleshoot app battery usage"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "battery_006",
+    "canonical_query": "Battery percentage drops unusually quickly",
+    "query_variations": [
+      "Battery percentage drops unusually quickly",
+      "battery percentage drops unusually quickly",
+      "issue with rapid battery drop",
+      "rapid battery drop problem",
+      "phone rapid battery drop",
+      "device rapid battery drop",
+      "experiencing rapid battery drop",
+      "my device has rapid battery drop",
+      "help with rapid battery drop",
+      "troubleshoot rapid battery drop"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "battery_007",
+    "canonical_query": "Power saving needs to be enabled",
+    "query_variations": [
+      "Power saving needs to be enabled",
+      "power saving needs to be enabled",
+      "issue with power saving",
+      "power saving problem",
+      "phone power saving",
+      "device power saving",
+      "experiencing power saving",
+      "my device has power saving",
+      "help with power saving",
+      "troubleshoot power saving"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "battery_008",
+    "canonical_query": "Battery behavior changed after a software update",
+    "query_variations": [
+      "Battery behavior changed after a software update",
+      "battery behavior changed after a software update",
+      "issue with battery after update",
+      "battery after update problem",
+      "phone battery after update",
+      "device battery after update",
+      "experiencing battery after update",
+      "my device has battery after update",
+      "help with battery after update",
+      "troubleshoot battery after update"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "display_009",
+    "canonical_query": "Screen brightness changes unexpectedly",
+    "query_variations": [
+      "Screen brightness changes unexpectedly",
+      "screen brightness changes unexpectedly",
+      "issue with brightness changes",
+      "brightness changes problem",
+      "phone brightness changes",
+      "device brightness changes",
+      "experiencing brightness changes",
+      "my device has brightness changes",
+      "help with brightness changes",
+      "troubleshoot brightness changes"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "display_010",
+    "canonical_query": "Screen turns off too quickly",
+    "query_variations": [
+      "Screen turns off too quickly",
+      "screen turns off too quickly",
+      "issue with screen timeout",
+      "screen timeout problem",
+      "phone screen timeout",
+      "device screen timeout",
+      "experiencing screen timeout",
+      "my device has screen timeout",
+      "help with screen timeout",
+      "troubleshoot screen timeout"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "display_011",
+    "canonical_query": "Screen stays on longer than expected",
+    "query_variations": [
+      "Screen stays on longer than expected",
+      "screen stays on longer than expected",
+      "issue with screen timeout",
+      "screen timeout problem",
+      "phone screen timeout",
+      "device screen timeout",
+      "experiencing screen timeout",
+      "my device has screen timeout",
+      "help with screen timeout",
+      "troubleshoot screen timeout"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "display_012",
+    "canonical_query": "Navigation gestures behave unexpectedly",
+    "query_variations": [
+      "Navigation gestures behave unexpectedly",
+      "navigation gestures behave unexpectedly",
+      "issue with navigation gestures",
+      "navigation gestures problem",
+      "phone navigation gestures",
+      "device navigation gestures",
+      "experiencing navigation gestures",
+      "my device has navigation gestures",
+      "help with navigation gestures",
+      "troubleshoot navigation gestures"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "display_013",
+    "canonical_query": "Navigation controls need to be changed",
+    "query_variations": [
+      "Navigation controls need to be changed",
+      "navigation controls need to be changed",
+      "issue with navigation settings",
+      "navigation settings problem",
+      "phone navigation settings",
+      "device navigation settings",
+      "experiencing navigation settings",
+      "my device has navigation settings",
+      "help with navigation settings",
+      "troubleshoot navigation settings"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "display_014",
+    "canonical_query": "Touch interaction feels delayed",
+    "query_variations": [
+      "Touch interaction feels delayed",
+      "touch interaction feels delayed",
+      "issue with touch response",
+      "touch response problem",
+      "phone touch response",
+      "device touch response",
+      "experiencing touch response",
+      "my device has touch response",
+      "help with touch response",
+      "troubleshoot touch response"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "display_015",
+    "canonical_query": "Screen appearance needs adjustment",
+    "query_variations": [
+      "Screen appearance needs adjustment",
+      "screen appearance needs adjustment",
+      "issue with screen appearance",
+      "screen appearance problem",
+      "phone screen appearance",
+      "device screen appearance",
+      "experiencing screen appearance",
+      "my device has screen appearance",
+      "help with screen appearance",
+      "troubleshoot screen appearance"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "display_016",
+    "canonical_query": "Accidental touches occur when the screen is in a pocket",
+    "query_variations": [
+      "Accidental touches occur when the screen is in a pocket",
+      "accidental touches occur when the screen is in a pocket",
+      "issue with accidental touch",
+      "accidental touch problem",
+      "phone accidental touch",
+      "device accidental touch",
+      "experiencing accidental touch",
+      "my device has accidental touch",
+      "help with accidental touch",
+      "troubleshoot accidental touch"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "camera_017",
+    "canonical_query": "Camera does not open correctly",
+    "query_variations": [
+      "Camera does not open correctly",
+      "camera does not open correctly",
+      "issue with camera not opening",
+      "camera not opening problem",
+      "phone camera not opening",
+      "device camera not opening",
+      "experiencing camera not opening",
+      "my device has camera not opening",
+      "help with camera not opening",
+      "troubleshoot camera not opening"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "camera_018",
+    "canonical_query": "Camera application freezes",
+    "query_variations": [
+      "Camera application freezes",
+      "camera application freezes",
+      "issue with camera freeze",
+      "camera freeze problem",
+      "phone camera freeze",
+      "device camera freeze",
+      "experiencing camera freeze",
+      "my device has camera freeze",
+      "help with camera freeze",
+      "troubleshoot camera freeze"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "camera_019",
+    "canonical_query": "Camera photos look blurry",
+    "query_variations": [
+      "Camera photos look blurry",
+      "camera photos look blurry",
+      "issue with blurry camera",
+      "blurry camera problem",
+      "phone blurry camera",
+      "device blurry camera",
+      "experiencing blurry camera",
+      "my device has blurry camera",
+      "help with blurry camera",
+      "troubleshoot blurry camera"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "camera_020",
+    "canonical_query": "Camera behavior changed after an update",
+    "query_variations": [
+      "Camera behavior changed after an update",
+      "camera behavior changed after an update",
+      "issue with camera after update",
+      "camera after update problem",
+      "phone camera after update",
+      "device camera after update",
+      "experiencing camera after update",
+      "my device has camera after update",
+      "help with camera after update",
+      "troubleshoot camera after update"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "camera_021",
+    "canonical_query": "Camera settings need to be reset",
+    "query_variations": [
+      "Camera settings need to be reset",
+      "camera settings need to be reset",
+      "issue with reset camera settings",
+      "reset camera settings problem",
+      "phone reset camera settings",
+      "device reset camera settings",
+      "experiencing reset camera settings",
+      "my device has reset camera settings",
+      "help with reset camera settings",
+      "troubleshoot reset camera settings"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "camera_022",
+    "canonical_query": "Camera takes too long to start",
+    "query_variations": [
+      "Camera takes too long to start",
+      "camera takes too long to start",
+      "issue with slow camera",
+      "slow camera problem",
+      "phone slow camera",
+      "device slow camera",
+      "experiencing slow camera",
+      "my device has slow camera",
+      "help with slow camera",
+      "troubleshoot slow camera"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "camera_023",
+    "canonical_query": "Camera storage behavior needs checking",
+    "query_variations": [
+      "Camera storage behavior needs checking",
+      "camera storage behavior needs checking",
+      "issue with camera storage",
+      "camera storage problem",
+      "phone camera storage",
+      "device camera storage",
+      "experiencing camera storage",
+      "my device has camera storage",
+      "help with camera storage",
+      "troubleshoot camera storage"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "camera_024",
+    "canonical_query": "Camera permissions need to be checked",
+    "query_variations": [
+      "Camera permissions need to be checked",
+      "camera permissions need to be checked",
+      "issue with camera permissions",
+      "camera permissions problem",
+      "phone camera permissions",
+      "device camera permissions",
+      "experiencing camera permissions",
+      "my device has camera permissions",
+      "help with camera permissions",
+      "troubleshoot camera permissions"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "performance_025",
+    "canonical_query": "Device becomes slow after a software update",
+    "query_variations": [
+      "Device becomes slow after a software update",
+      "device becomes slow after a software update",
+      "issue with slow after update",
+      "slow after update problem",
+      "phone slow after update",
+      "device slow after update",
+      "experiencing slow after update",
+      "my device has slow after update",
+      "help with slow after update",
+      "troubleshoot slow after update"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "performance_026",
+    "canonical_query": "Apps freeze or become unresponsive",
+    "query_variations": [
+      "Apps freeze or become unresponsive",
+      "apps freeze or become unresponsive",
+      "issue with apps freezing",
+      "apps freezing problem",
+      "phone apps freezing",
+      "device apps freezing",
+      "experiencing apps freezing",
+      "my device has apps freezing",
+      "help with apps freezing",
+      "troubleshoot apps freezing"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "performance_027",
+    "canonical_query": "Device storage is nearly full",
+    "query_variations": [
+      "Device storage is nearly full",
+      "device storage is nearly full",
+      "issue with low storage",
+      "low storage problem",
+      "phone low storage",
+      "device low storage",
+      "experiencing low storage",
+      "my device has low storage",
+      "help with low storage",
+      "troubleshoot low storage"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "performance_028",
+    "canonical_query": "Device has insufficient free memory",
+    "query_variations": [
+      "Device has insufficient free memory",
+      "device has insufficient free memory",
+      "issue with low memory",
+      "low memory problem",
+      "phone low memory",
+      "device low memory",
+      "experiencing low memory",
+      "my device has low memory",
+      "help with low memory",
+      "troubleshoot low memory"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "performance_029",
+    "canonical_query": "An application causes performance problems",
+    "query_variations": [
+      "An application causes performance problems",
+      "an application causes performance problems",
+      "issue with problematic app",
+      "problematic app problem",
+      "phone problematic app",
+      "device problematic app",
+      "experiencing problematic app",
+      "my device has problematic app",
+      "help with problematic app",
+      "troubleshoot problematic app"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "performance_030",
+    "canonical_query": "Device performance is generally sluggish",
+    "query_variations": [
+      "Device performance is generally sluggish",
+      "device performance is generally sluggish",
+      "issue with device lag",
+      "device lag problem",
+      "phone device lag",
+      "device device lag",
+      "experiencing device lag",
+      "my device has device lag",
+      "help with device lag",
+      "troubleshoot device lag"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "performance_031",
+    "canonical_query": "Background activity affects performance",
+    "query_variations": [
+      "Background activity affects performance",
+      "background activity affects performance",
+      "issue with background activity",
+      "background activity problem",
+      "phone background activity",
+      "device background activity",
+      "experiencing background activity",
+      "my device has background activity",
+      "help with background activity",
+      "troubleshoot background activity"
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "problem_id": "performance_032",
+    "canonical_query": "Performance changed after installing an application",
+    "query_variations": [
+      "Performance changed after installing an application",
+      "performance changed after installing an application",
+      "issue with performance after app install",
+      "performance after app install problem",
+      "phone performance after app install",
+      "device performance after app install",
+      "experiencing performance after app install",
+      "my device has performance after app install",
+      "help with performance after app install",
+      "troubleshoot performance after app install"
+    ],
+    "source": "development_prototype"
+  }
+]

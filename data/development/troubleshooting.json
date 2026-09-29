@@ -1,0 +1,866 @@
+[
+  {
+    "id": "battery_001",
+    "domain": "battery",
+    "problem": "Battery drains quickly",
+    "description": "Development prototype record for: Battery drains quickly.",
+    "keywords": [
+      "battery usage",
+      "battery",
+      "battery drains quickly"
+    ],
+    "actions": [
+      {
+        "id": "battery_001_action_01",
+        "name": "Review battery settings",
+        "description": "Review settings relevant to the reported issue: battery drains quickly.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Battery",
+          "Open Battery usage"
+        ],
+        "target_screen": "Battery > Battery usage"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "battery_002",
+    "domain": "battery",
+    "problem": "Device gets hot during normal use",
+    "description": "Development prototype record for: Device gets hot during normal use.",
+    "keywords": [
+      "overheating",
+      "battery",
+      "device gets hot during normal use"
+    ],
+    "actions": [
+      {
+        "id": "battery_002_action_01",
+        "name": "Review battery settings",
+        "description": "Review settings relevant to the reported issue: device gets hot during normal use.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Battery",
+          "Open Battery usage"
+        ],
+        "target_screen": "Battery > Battery usage"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "battery_003",
+    "domain": "battery",
+    "problem": "Charging is slower than expected",
+    "description": "Development prototype record for: Charging is slower than expected.",
+    "keywords": [
+      "slow charging",
+      "battery",
+      "charging is slower than expected"
+    ],
+    "actions": [
+      {
+        "id": "battery_003_action_01",
+        "name": "Review battery settings",
+        "description": "Review settings relevant to the reported issue: charging is slower than expected.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Battery",
+          "Open Charging"
+        ],
+        "target_screen": "Battery > Charging"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "battery_004",
+    "domain": "battery",
+    "problem": "Battery drains while the device is idle",
+    "description": "Development prototype record for: Battery drains while the device is idle.",
+    "keywords": [
+      "idle battery drain",
+      "battery",
+      "battery drains while the device is idle"
+    ],
+    "actions": [
+      {
+        "id": "battery_004_action_01",
+        "name": "Review battery settings",
+        "description": "Review settings relevant to the reported issue: battery drains while the device is idle.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Battery",
+          "Open Battery usage"
+        ],
+        "target_screen": "Battery > Battery usage"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "battery_005",
+    "domain": "battery",
+    "problem": "An app is consuming excessive battery",
+    "description": "Development prototype record for: An app is consuming excessive battery.",
+    "keywords": [
+      "app battery usage",
+      "battery",
+      "an app is consuming excessive battery"
+    ],
+    "actions": [
+      {
+        "id": "battery_005_action_01",
+        "name": "Review battery settings",
+        "description": "Review settings relevant to the reported issue: an app is consuming excessive battery.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Battery",
+          "Open Battery usage"
+        ],
+        "target_screen": "Battery > Battery usage"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "battery_006",
+    "domain": "battery",
+    "problem": "Battery percentage drops unusually quickly",
+    "description": "Development prototype record for: Battery percentage drops unusually quickly.",
+    "keywords": [
+      "rapid battery drop",
+      "battery",
+      "battery percentage drops unusually quickly"
+    ],
+    "actions": [
+      {
+        "id": "battery_006_action_01",
+        "name": "Review battery settings",
+        "description": "Review settings relevant to the reported issue: battery percentage drops unusually quickly.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Battery",
+          "Open Battery usage"
+        ],
+        "target_screen": "Battery > Battery usage"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "battery_007",
+    "domain": "battery",
+    "problem": "Power saving needs to be enabled",
+    "description": "Development prototype record for: Power saving needs to be enabled.",
+    "keywords": [
+      "power saving",
+      "battery",
+      "power saving needs to be enabled"
+    ],
+    "actions": [
+      {
+        "id": "battery_007_action_01",
+        "name": "Review battery settings",
+        "description": "Review settings relevant to the reported issue: power saving needs to be enabled.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Battery",
+          "Open Power saving"
+        ],
+        "target_screen": "Battery > Power saving"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "battery_008",
+    "domain": "battery",
+    "problem": "Battery behavior changed after a software update",
+    "description": "Development prototype record for: Battery behavior changed after a software update.",
+    "keywords": [
+      "battery after update",
+      "battery",
+      "battery behavior changed after a software update"
+    ],
+    "actions": [
+      {
+        "id": "battery_008_action_01",
+        "name": "Review battery settings",
+        "description": "Review settings relevant to the reported issue: battery behavior changed after a software update.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Battery",
+          "Open Battery usage"
+        ],
+        "target_screen": "Battery > Battery usage"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "display_009",
+    "domain": "display",
+    "problem": "Screen brightness changes unexpectedly",
+    "description": "Development prototype record for: Screen brightness changes unexpectedly.",
+    "keywords": [
+      "brightness changes",
+      "display",
+      "screen brightness changes unexpectedly"
+    ],
+    "actions": [
+      {
+        "id": "display_009_action_01",
+        "name": "Review display settings",
+        "description": "Review settings relevant to the reported issue: screen brightness changes unexpectedly.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Display",
+          "Open Brightness"
+        ],
+        "target_screen": "Display > Brightness"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "display_010",
+    "domain": "display",
+    "problem": "Screen turns off too quickly",
+    "description": "Development prototype record for: Screen turns off too quickly.",
+    "keywords": [
+      "screen timeout",
+      "display",
+      "screen turns off too quickly"
+    ],
+    "actions": [
+      {
+        "id": "display_010_action_01",
+        "name": "Review display settings",
+        "description": "Review settings relevant to the reported issue: screen turns off too quickly.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Display",
+          "Open Screen timeout"
+        ],
+        "target_screen": "Display > Screen timeout"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "display_011",
+    "domain": "display",
+    "problem": "Screen stays on longer than expected",
+    "description": "Development prototype record for: Screen stays on longer than expected.",
+    "keywords": [
+      "screen timeout",
+      "display",
+      "screen stays on longer than expected"
+    ],
+    "actions": [
+      {
+        "id": "display_011_action_01",
+        "name": "Review display settings",
+        "description": "Review settings relevant to the reported issue: screen stays on longer than expected.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Display",
+          "Open Screen timeout"
+        ],
+        "target_screen": "Display > Screen timeout"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "display_012",
+    "domain": "display",
+    "problem": "Navigation gestures behave unexpectedly",
+    "description": "Development prototype record for: Navigation gestures behave unexpectedly.",
+    "keywords": [
+      "navigation gestures",
+      "display",
+      "navigation gestures behave unexpectedly"
+    ],
+    "actions": [
+      {
+        "id": "display_012_action_01",
+        "name": "Review display settings",
+        "description": "Review settings relevant to the reported issue: navigation gestures behave unexpectedly.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Display",
+          "Open Navigation"
+        ],
+        "target_screen": "Display > Navigation"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "display_013",
+    "domain": "display",
+    "problem": "Navigation controls need to be changed",
+    "description": "Development prototype record for: Navigation controls need to be changed.",
+    "keywords": [
+      "navigation settings",
+      "display",
+      "navigation controls need to be changed"
+    ],
+    "actions": [
+      {
+        "id": "display_013_action_01",
+        "name": "Review display settings",
+        "description": "Review settings relevant to the reported issue: navigation controls need to be changed.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Display",
+          "Open Navigation"
+        ],
+        "target_screen": "Display > Navigation"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "display_014",
+    "domain": "display",
+    "problem": "Touch interaction feels delayed",
+    "description": "Development prototype record for: Touch interaction feels delayed.",
+    "keywords": [
+      "touch response",
+      "display",
+      "touch interaction feels delayed"
+    ],
+    "actions": [
+      {
+        "id": "display_014_action_01",
+        "name": "Review display settings",
+        "description": "Review settings relevant to the reported issue: touch interaction feels delayed.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Display",
+          "Open Touch settings"
+        ],
+        "target_screen": "Display > Touch settings"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "display_015",
+    "domain": "display",
+    "problem": "Screen appearance needs adjustment",
+    "description": "Development prototype record for: Screen appearance needs adjustment.",
+    "keywords": [
+      "screen appearance",
+      "display",
+      "screen appearance needs adjustment"
+    ],
+    "actions": [
+      {
+        "id": "display_015_action_01",
+        "name": "Review display settings",
+        "description": "Review settings relevant to the reported issue: screen appearance needs adjustment.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Display",
+          "Open Screen mode"
+        ],
+        "target_screen": "Display > Screen mode"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "display_016",
+    "domain": "display",
+    "problem": "Accidental touches occur when the screen is in a pocket",
+    "description": "Development prototype record for: Accidental touches occur when the screen is in a pocket.",
+    "keywords": [
+      "accidental touch",
+      "display",
+      "accidental touches occur when the screen is in a pocket"
+    ],
+    "actions": [
+      {
+        "id": "display_016_action_01",
+        "name": "Review display settings",
+        "description": "Review settings relevant to the reported issue: accidental touches occur when the screen is in a pocket.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Display",
+          "Open Accidental touch protection"
+        ],
+        "target_screen": "Display > Accidental touch protection"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "camera_017",
+    "domain": "camera",
+    "problem": "Camera does not open correctly",
+    "description": "Development prototype record for: Camera does not open correctly.",
+    "keywords": [
+      "camera not opening",
+      "camera",
+      "camera does not open correctly"
+    ],
+    "actions": [
+      {
+        "id": "camera_017_action_01",
+        "name": "Review camera settings",
+        "description": "Review settings relevant to the reported issue: camera does not open correctly.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Camera",
+          "Open Camera settings"
+        ],
+        "target_screen": "Camera > Camera settings"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "camera_018",
+    "domain": "camera",
+    "problem": "Camera application freezes",
+    "description": "Development prototype record for: Camera application freezes.",
+    "keywords": [
+      "camera freeze",
+      "camera",
+      "camera application freezes"
+    ],
+    "actions": [
+      {
+        "id": "camera_018_action_01",
+        "name": "Review camera settings",
+        "description": "Review settings relevant to the reported issue: camera application freezes.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Camera",
+          "Open Camera settings"
+        ],
+        "target_screen": "Camera > Camera settings"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "camera_019",
+    "domain": "camera",
+    "problem": "Camera photos look blurry",
+    "description": "Development prototype record for: Camera photos look blurry.",
+    "keywords": [
+      "blurry camera",
+      "camera",
+      "camera photos look blurry"
+    ],
+    "actions": [
+      {
+        "id": "camera_019_action_01",
+        "name": "Review camera settings",
+        "description": "Review settings relevant to the reported issue: camera photos look blurry.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Camera",
+          "Open Camera settings"
+        ],
+        "target_screen": "Camera > Camera settings"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "camera_020",
+    "domain": "camera",
+    "problem": "Camera behavior changed after an update",
+    "description": "Development prototype record for: Camera behavior changed after an update.",
+    "keywords": [
+      "camera after update",
+      "camera",
+      "camera behavior changed after an update"
+    ],
+    "actions": [
+      {
+        "id": "camera_020_action_01",
+        "name": "Review camera settings",
+        "description": "Review settings relevant to the reported issue: camera behavior changed after an update.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Camera",
+          "Open Camera settings"
+        ],
+        "target_screen": "Camera > Camera settings"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "camera_021",
+    "domain": "camera",
+    "problem": "Camera settings need to be reset",
+    "description": "Development prototype record for: Camera settings need to be reset.",
+    "keywords": [
+      "reset camera settings",
+      "camera",
+      "camera settings need to be reset"
+    ],
+    "actions": [
+      {
+        "id": "camera_021_action_01",
+        "name": "Review camera settings",
+        "description": "Review settings relevant to the reported issue: camera settings need to be reset.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Camera",
+          "Open Camera settings"
+        ],
+        "target_screen": "Camera > Camera settings"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "camera_022",
+    "domain": "camera",
+    "problem": "Camera takes too long to start",
+    "description": "Development prototype record for: Camera takes too long to start.",
+    "keywords": [
+      "slow camera",
+      "camera",
+      "camera takes too long to start"
+    ],
+    "actions": [
+      {
+        "id": "camera_022_action_01",
+        "name": "Review camera settings",
+        "description": "Review settings relevant to the reported issue: camera takes too long to start.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Camera",
+          "Open Camera settings"
+        ],
+        "target_screen": "Camera > Camera settings"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "camera_023",
+    "domain": "camera",
+    "problem": "Camera storage behavior needs checking",
+    "description": "Development prototype record for: Camera storage behavior needs checking.",
+    "keywords": [
+      "camera storage",
+      "camera",
+      "camera storage behavior needs checking"
+    ],
+    "actions": [
+      {
+        "id": "camera_023_action_01",
+        "name": "Review camera settings",
+        "description": "Review settings relevant to the reported issue: camera storage behavior needs checking.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Camera",
+          "Open Storage"
+        ],
+        "target_screen": "Camera > Storage"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "camera_024",
+    "domain": "camera",
+    "problem": "Camera permissions need to be checked",
+    "description": "Development prototype record for: Camera permissions need to be checked.",
+    "keywords": [
+      "camera permissions",
+      "camera",
+      "camera permissions need to be checked"
+    ],
+    "actions": [
+      {
+        "id": "camera_024_action_01",
+        "name": "Review camera settings",
+        "description": "Review settings relevant to the reported issue: camera permissions need to be checked.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open the relevant settings area",
+          "Review the reported setting"
+        ],
+        "target_screen": "Settings > App permissions > Camera"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "performance_025",
+    "domain": "performance",
+    "problem": "Device becomes slow after a software update",
+    "description": "Development prototype record for: Device becomes slow after a software update.",
+    "keywords": [
+      "slow after update",
+      "performance",
+      "device becomes slow after a software update"
+    ],
+    "actions": [
+      {
+        "id": "performance_025_action_01",
+        "name": "Review device performance settings",
+        "description": "Review settings relevant to the reported issue: device becomes slow after a software update.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Device care",
+          "Open Performance"
+        ],
+        "target_screen": "Device care > Performance"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "performance_026",
+    "domain": "performance",
+    "problem": "Apps freeze or become unresponsive",
+    "description": "Development prototype record for: Apps freeze or become unresponsive.",
+    "keywords": [
+      "apps freezing",
+      "performance",
+      "apps freeze or become unresponsive"
+    ],
+    "actions": [
+      {
+        "id": "performance_026_action_01",
+        "name": "Review device performance settings",
+        "description": "Review settings relevant to the reported issue: apps freeze or become unresponsive.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Device care",
+          "Open Memory"
+        ],
+        "target_screen": "Device care > Memory"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "performance_027",
+    "domain": "performance",
+    "problem": "Device storage is nearly full",
+    "description": "Development prototype record for: Device storage is nearly full.",
+    "keywords": [
+      "low storage",
+      "performance",
+      "device storage is nearly full"
+    ],
+    "actions": [
+      {
+        "id": "performance_027_action_01",
+        "name": "Review device performance settings",
+        "description": "Review settings relevant to the reported issue: device storage is nearly full.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Device care",
+          "Open Storage"
+        ],
+        "target_screen": "Device care > Storage"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "performance_028",
+    "domain": "performance",
+    "problem": "Device has insufficient free memory",
+    "description": "Development prototype record for: Device has insufficient free memory.",
+    "keywords": [
+      "low memory",
+      "performance",
+      "device has insufficient free memory"
+    ],
+    "actions": [
+      {
+        "id": "performance_028_action_01",
+        "name": "Review device performance settings",
+        "description": "Review settings relevant to the reported issue: device has insufficient free memory.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Device care",
+          "Open Memory"
+        ],
+        "target_screen": "Device care > Memory"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "performance_029",
+    "domain": "performance",
+    "problem": "An application causes performance problems",
+    "description": "Development prototype record for: An application causes performance problems.",
+    "keywords": [
+      "problematic app",
+      "performance",
+      "an application causes performance problems"
+    ],
+    "actions": [
+      {
+        "id": "performance_029_action_01",
+        "name": "Review device performance settings",
+        "description": "Review settings relevant to the reported issue: an application causes performance problems.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open the relevant settings area",
+          "Review the reported setting"
+        ],
+        "target_screen": "Settings > Apps"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "performance_030",
+    "domain": "performance",
+    "problem": "Device performance is generally sluggish",
+    "description": "Development prototype record for: Device performance is generally sluggish.",
+    "keywords": [
+      "device lag",
+      "performance",
+      "device performance is generally sluggish"
+    ],
+    "actions": [
+      {
+        "id": "performance_030_action_01",
+        "name": "Review device performance settings",
+        "description": "Review settings relevant to the reported issue: device performance is generally sluggish.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open Device care",
+          "Open Performance"
+        ],
+        "target_screen": "Device care > Performance"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "performance_031",
+    "domain": "performance",
+    "problem": "Background activity affects performance",
+    "description": "Development prototype record for: Background activity affects performance.",
+    "keywords": [
+      "background activity",
+      "performance",
+      "background activity affects performance"
+    ],
+    "actions": [
+      {
+        "id": "performance_031_action_01",
+        "name": "Review device performance settings",
+        "description": "Review settings relevant to the reported issue: background activity affects performance.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open the relevant settings area",
+          "Review the reported setting"
+        ],
+        "target_screen": "Settings > Apps"
+      }
+    ],
+    "source": "development_prototype"
+  },
+  {
+    "id": "performance_032",
+    "domain": "performance",
+    "problem": "Performance changed after installing an application",
+    "description": "Development prototype record for: Performance changed after installing an application.",
+    "keywords": [
+      "performance after app install",
+      "performance",
+      "performance changed after installing an application"
+    ],
+    "actions": [
+      {
+        "id": "performance_032_action_01",
+        "name": "Review device performance settings",
+        "description": "Review settings relevant to the reported issue: performance changed after installing an application.",
+        "category": "manual",
+        "priority": 1,
+        "steps": [
+          "Open Settings",
+          "Open the relevant settings area",
+          "Review the reported setting"
+        ],
+        "target_screen": "Settings > Apps"
+      }
+    ],
+    "source": "development_prototype"
+  }
+]
