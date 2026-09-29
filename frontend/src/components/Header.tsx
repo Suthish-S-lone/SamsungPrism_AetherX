@@ -1,11 +1,17 @@
 import React from 'react';
-import { Smartphone, RefreshCw } from 'lucide-react';
+import { Smartphone, RefreshCw, Terminal } from 'lucide-react';
 
 interface HeaderProps {
   onNewDiagnosis: () => void;
+  devMode?: boolean;
+  onToggleDevMode?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onNewDiagnosis }) => {
+export const Header: React.FC<HeaderProps> = ({
+  onNewDiagnosis,
+  devMode = false,
+  onToggleDevMode,
+}) => {
   return (
     <header className="app-header">
       <div className="header-inner">
@@ -31,6 +37,19 @@ export const Header: React.FC<HeaderProps> = ({ onNewDiagnosis }) => {
         </div>
 
         <div className="header-actions">
+          {onToggleDevMode && (
+            <button
+              type="button"
+              className={`btn-icon ${devMode ? 'active' : ''}`}
+              onClick={onToggleDevMode}
+              title={devMode ? 'Hide Developer Pipeline Inspector' : 'Inspect Diagnostic Pipeline'}
+              aria-label="Toggle Developer Pipeline Inspector"
+            >
+              <Terminal size={15} />
+              <span>Inspect</span>
+            </button>
+          )}
+
           <button
             type="button"
             className="btn-icon"

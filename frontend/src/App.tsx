@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { LandingView } from './components/LandingView';
 import { QueryInput } from './components/QueryInput';
@@ -10,7 +10,8 @@ import { SimulatedSetting } from './components/SimulatedSetting';
 import { ResolutionFeedback } from './components/ResolutionFeedback';
 import { OutOfScopeView } from './components/OutOfScopeView';
 import { ErrorView } from './components/ErrorView';
-import { troubleshootQuery, continueTroubleshoot, checkBackendHealth } from './services/api';
+import { DebugPanel } from './components/DebugPanel';
+import { troubleshootQuery, continueTroubleshoot } from './services/api';
 import type { Action, ClarificationOption, Context, StructuredTroubleshootResponse } from './types/api';
 
 type AppStep = 'landing' | 'input' | 'loading' | 'clarification' | 'diagnosis' | 'workflow' | 'feedback' | 'out_of_scope' | 'error';
@@ -18,9 +19,12 @@ type AppStep = 'landing' | 'input' | 'loading' | 'clarification' | 'diagnosis' |
 export const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<AppStep>('landing');
   const [currentQuery, setCurrentQuery] = useState('');
-  const [backendOnline, setBackendOnline] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const [isClarifying, setIsClarifying] = useState(false);
+
+  // Optional Developer Pipeline Inspection mode (hidden by default)
+  const [devMode, setDevMode] = useState(false);
+  const [isInspectorOpen, setIsInspectorOpen] = useState(true);
 
   // API Response state
   const [apiResponse, setApiResponse] = useState<StructuredTroubleshootResponse | null>(null);
@@ -31,13 +35,6 @@ export const App: React.FC = () => {
   const [completedActions, setCompletedActions] = useState<number[]>([]);
   const [activeSimulatedAction, setActiveSimulatedAction] = useState<Action | null>(null);
 
-  // Check backend health on mount
-  useEffect(() => {
-    checkBackendHealth()
-      .then(() => setBackendOnline(true))
-      .catch(() => setBackendOnline(false));
-  }, []);
-
   const handleDiagnose = async (queryText: string) => {
     setCurrentQuery(queryText);
     setCurrentStep('loading');
@@ -46,7 +43,6 @@ export const App: React.FC = () => {
     try {
       const response = await troubleshootQuery(queryText, true);
       setApiResponse(response);
-      setBackendOnline(true);
 
       if (response.status === 'clarification_required' && response.clarification) {
         setActiveContext(null);
@@ -63,7 +59,6 @@ export const App: React.FC = () => {
       }
     } catch (err: any) {
       setErrorMessage(err.message || 'Failed to connect to SmartGuide.');
-      setBackendOnline(false);
       setCurrentStep('error');
     }
   };
@@ -176,22 +171,18 @@ export const App: React.FC = () => {
     setCurrentStep('input');
   };
 
-  const handleGoHome = () => {
-    setCurrentQuery('');
-    setApiResponse(null);
-    setActiveContext(null);
-    setCurrentActionIndex(0);
-    setCompletedActions([]);
-    setActiveSimulatedAction(null);
-    setCurrentStep('landing');
-  };
-
   // Show header only when past the landing screen
   const showHeader = currentStep !== 'landing';
 
   return (
     <div className="app-container">
-      {showHeader && <Header onNewDiagnosis={handleNewDiagnosis} />}
+      {showHeader && (
+        <Header
+          onNewDiagnosis={handleNewDiagnosis}
+          devMode={devMode}
+          onToggleDevMode={() => setDevMode(!devMode)}
+        />
+      )}
 
       <main className={`main-content ${currentStep === 'landing' ? 'landing-main' : ''}`}>
         {currentStep === 'landing' && (
@@ -261,6 +252,23 @@ export const App: React.FC = () => {
           <ErrorView
             errorMessage={errorMessage}
             onRetry={() => handleDiagnose(currentQuery || 'My battery drains quickly')}
+          />
+        )}
+
+        {/* Optional Developer Pipeline Inspector (rendered conditionally when devMode is active) */}
+        {devMode && (apiResponse || activeContext) && currentStep !== 'loading' && (
+          <DebugPanel
+            apiResponse={apiResponse}
+            debugInfo={apiResponse?.debug_info}
+            sessionId={apiResponse?.session_id}
+            turnCount={apiResponse?.turn_count}
+            maxTurns={apiResponse?.max_turns}
+            clarificationHistory={apiResponse?.clarification_history}
+            activeContext={activeContext}
+            currentQuery={currentQuery}
+            isOpen={isInspectorOpen}
+            onToggle={() => setIsInspectorOpen(!isInspectorOpen)}
+            onClose={() => setDevMode(false)}
           />
         )}
 
