@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
+import { LandingView } from './components/LandingView';
 import { QueryInput } from './components/QueryInput';
 import { LoadingState } from './components/LoadingState';
 import { ClarificationView } from './components/ClarificationView';
-import { ConversationTimeline } from './components/ConversationTimeline';
 import { DiagnosisCard } from './components/DiagnosisCard';
 import { GuidedWorkflow } from './components/GuidedWorkflow';
 import { SimulatedSetting } from './components/SimulatedSetting';
@@ -13,10 +13,10 @@ import { ErrorView } from './components/ErrorView';
 import { troubleshootQuery, continueTroubleshoot, checkBackendHealth } from './services/api';
 import type { Action, ClarificationOption, Context, StructuredTroubleshootResponse } from './types/api';
 
-type AppStep = 'input' | 'loading' | 'clarification' | 'diagnosis' | 'workflow' | 'feedback' | 'out_of_scope' | 'error';
+type AppStep = 'landing' | 'input' | 'loading' | 'clarification' | 'diagnosis' | 'workflow' | 'feedback' | 'out_of_scope' | 'error';
 
 export const App: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState<AppStep>('input');
+  const [currentStep, setCurrentStep] = useState<AppStep>('landing');
   const [currentQuery, setCurrentQuery] = useState('');
   const [backendOnline, setBackendOnline] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -62,7 +62,7 @@ export const App: React.FC = () => {
         setCurrentStep('out_of_scope');
       }
     } catch (err: any) {
-      setErrorMessage(err.message || 'Failed to connect to diagnostic backend.');
+      setErrorMessage(err.message || 'Failed to connect to SmartGuide.');
       setBackendOnline(false);
       setCurrentStep('error');
     }
@@ -172,14 +172,34 @@ export const App: React.FC = () => {
     setCurrentStep('input');
   };
 
+  const handleStartTroubleshooting = () => {
+    setCurrentStep('input');
+  };
+
+  const handleGoHome = () => {
+    setCurrentQuery('');
+    setApiResponse(null);
+    setActiveContext(null);
+    setCurrentActionIndex(0);
+    setCompletedActions([]);
+    setActiveSimulatedAction(null);
+    setCurrentStep('landing');
+  };
+
+  // Show header only when past the landing screen
+  const showHeader = currentStep !== 'landing';
+
   return (
     <div className="app-container">
-      <Header onNewDiagnosis={handleNewDiagnosis} />
+      {showHeader && <Header onNewDiagnosis={handleNewDiagnosis} />}
 
-      <main className="main-content">
-        {/* Multi-Turn Diagnostic Progression Timeline */}
-        {currentStep !== 'input' && currentStep !== 'loading' && apiResponse?.timeline && (
-          <ConversationTimeline timeline={apiResponse.timeline} />
+      <main className={`main-content ${currentStep === 'landing' ? 'landing-main' : ''}`}>
+        {currentStep === 'landing' && (
+          <LandingView
+            onStartTroubleshooting={handleStartTroubleshooting}
+            onQuickCategory={handleDiagnose}
+            onTryExample={handleDiagnose}
+          />
         )}
 
         {currentStep === 'input' && (

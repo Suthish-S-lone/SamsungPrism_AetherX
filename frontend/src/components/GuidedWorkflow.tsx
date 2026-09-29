@@ -109,7 +109,7 @@ export const GuidedWorkflow: React.FC<GuidedWorkflowProps> = ({
       >
         <Info size={18} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
         <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          <strong>Why this step:</strong> Applying this setting addresses the underlying root cause identified during neural hybrid diagnosis.
+          <strong>Why this step:</strong> This setting directly addresses the issue you described. Adjusting it should help resolve the problem.
         </div>
       </div>
 

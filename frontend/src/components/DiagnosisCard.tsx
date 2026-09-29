@@ -12,7 +12,6 @@ interface DiagnosisCardProps {
 
 export const DiagnosisCard: React.FC<DiagnosisCardProps> = ({
   context,
-  debugInfo,
   onStartWorkflow,
 }) => {
   const scorePercent = Math.round(context.score * 100);
@@ -42,10 +41,6 @@ export const DiagnosisCard: React.FC<DiagnosisCardProps> = ({
     domainClass = 'performance';
   }
 
-  // Explanation text derived from understanding and goal
-  const explanation = debugInfo?.query_understanding?.reasoning_tags?.[2] ||
-    `Based on your description, SmartGuide identified symptoms associated with "${context.goal}". A targeted resolution pathway is ready.`;
-
   const totalSteps = context.actions.reduce((acc, act) => acc + act.steps.length, 0);
 
   return (
@@ -65,12 +60,7 @@ export const DiagnosisCard: React.FC<DiagnosisCardProps> = ({
         </div>
       </div>
 
-      <div className="explanation-card">
-        <div className="explanation-label">Why SmartGuide Recommends This:</div>
-        <p className="explanation-text">{explanation}</p>
-      </div>
-
-      <div style={{ margin: '1.5rem 0' }}>
+      <div style={{ margin: '1.25rem 0 1.5rem' }}>
         <h4 style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
           Recommended Resolution Actions ({context.actions.length}):
         </h4>
@@ -113,7 +103,7 @@ export const DiagnosisCard: React.FC<DiagnosisCardProps> = ({
         ))}
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '2rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.75rem' }}>
         <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
           Step-by-step guidance • {totalSteps} total actions
         </span>
