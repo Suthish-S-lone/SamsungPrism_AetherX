@@ -61,6 +61,8 @@ class ConversationSession(BaseModel):
     extracted_signals: List[str] = Field(
         default_factory=list, description="Extracted keywords, cues, and clarification signals"
     )
+    turn_count: int = Field(default=1, description="Current turn number in the conversation")
+    max_turns: int = Field(default=3, description="Maximum permitted turns before insufficient_information")
     clarification_question: Optional[ClarificationQuestion] = Field(
         default=None, description="Active clarification question if ambiguity exists"
     )
@@ -69,6 +71,9 @@ class ConversationSession(BaseModel):
     )
     clarification_answer_label: Optional[str] = Field(
         default=None, description="Label of the option selected by the user"
+    )
+    clarification_history: List[dict] = Field(
+        default_factory=list, description="Chronological log of questions and answers in session"
     )
     eliminated_candidates: List[str] = Field(
         default_factory=list, description="Problem IDs eliminated through clarification"
@@ -84,7 +89,15 @@ class ConversationSession(BaseModel):
     resolution_status: Optional[Literal["in_progress", "resolved", "escalated"]] = Field(
         default="in_progress", description="Final resolution outcome"
     )
-    status: Literal["clarification_required", "diagnosis_ready", "out_of_scope", "no_match", "error"] = Field(
+    status: Literal[
+        "clarification_required",
+        "diagnosis_ready",
+        "insufficient_information",
+        "unsupported",
+        "out_of_scope",
+        "no_match",
+        "error",
+    ] = Field(
         default="diagnosis_ready", description="Current session state machine status"
     )
     created_at: float = Field(..., description="Session creation timestamp")

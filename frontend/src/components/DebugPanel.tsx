@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
-import { Terminal, ChevronDown, ChevronUp, Copy, Check, Cpu } from 'lucide-react';
-import type { DiagnosticDebugMetadata } from '../types/api';
+import { Terminal, ChevronDown, ChevronUp, Copy, Check, Cpu, Layers } from 'lucide-react';
+import type { DiagnosticDebugMetadata, ClarificationTurnRecord } from '../types/api';
 
 interface DebugPanelProps {
   debugInfo?: DiagnosticDebugMetadata | null;
+  sessionId?: string | null;
+  turnCount?: number;
+  maxTurns?: number;
+  clarificationHistory?: ClarificationTurnRecord[];
   isOpen: boolean;
   onToggle: () => void;
 }
 
 export const DebugPanel: React.FC<DebugPanelProps> = ({
   debugInfo,
+  sessionId,
+  turnCount,
+  maxTurns,
+  clarificationHistory,
   isOpen,
   onToggle,
 }) => {
@@ -23,7 +31,14 @@ export const DebugPanel: React.FC<DebugPanelProps> = ({
   const { query_understanding, retrieval, latency } = debugInfo;
 
   const handleCopyJson = () => {
-    navigator.clipboard.writeText(JSON.stringify(debugInfo, null, 2));
+    const payload = {
+      sessionId,
+      turnCount,
+      maxTurns,
+      clarificationHistory,
+      ...debugInfo,
+    };
+    navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -33,7 +48,7 @@ export const DebugPanel: React.FC<DebugPanelProps> = ({
       <div className="debug-header" onClick={onToggle} style={{ cursor: 'pointer' }}>
         <div className="debug-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Terminal size={18} color="#38bdf8" />
-          <span>Hackathon Diagnostic Pipeline Inspector (Theme 2)</span>
+          <span>Hackathon Diagnostic Pipeline Inspector (Phase 7 Multi-Turn)</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94a3b8', fontSize: '0.85rem' }}>
           <span>{isOpen ? 'Collapse Pipeline' : 'Inspect Pipeline'}</span>
@@ -43,6 +58,23 @@ export const DebugPanel: React.FC<DebugPanelProps> = ({
 
       {isOpen && (
         <div className="debug-content" style={{ padding: '1.25rem', background: '#0f172a', color: '#f8fafc' }}>
+          {/* Session & Turn Counter Status */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem', padding: '0.75rem', background: '#1e293b', borderRadius: '8px', border: '1px solid #334155' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <Layers size={14} color="#38bdf8" />
+              <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 700 }}>TURN:</span>
+              <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#f8fafc' }}>
+                {turnCount ?? 1} / {maxTurns ?? 3}
+              </span>
+            </div>
+            {sessionId && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginLeft: 'auto' }}>
+                <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Session ID:</span>
+                <span style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#38bdf8' }}>{sessionId}</span>
+              </div>
+            )}
+          </div>
+
           {/* Top Metrics Row */}
           <div className="debug-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
             <div className="debug-item" style={{ background: '#1e293b', padding: '0.85rem', borderRadius: '8px' }}>
@@ -91,6 +123,23 @@ export const DebugPanel: React.FC<DebugPanelProps> = ({
               "{query_understanding.canonical_symptom || query_understanding.original_query}"
             </div>
           </div>
+
+          {/* Multi-turn Clarification History */}
+          {clarificationHistory && clarificationHistory.length > 0 && (
+            <div style={{ marginBottom: '1rem' }}>
+              <div className="debug-label" style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 700, marginBottom: '0.35rem' }}>
+                Multi-Turn Clarification History:
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                {clarificationHistory.map((h, i) => (
+                  <div key={i} style={{ background: '#1e293b', padding: '0.5rem 0.75rem', borderRadius: '6px', fontSize: '0.78rem' }}>
+                    <span style={{ color: '#38bdf8', fontWeight: 700 }}>Turn {h.turn}: </span>
+                    <span style={{ color: '#e2e8f0' }}>{h.answer_label || h.user_text || h.answer_id}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Reasoning Signals & Tags */}
           <div style={{ marginBottom: '1rem' }}>
@@ -167,7 +216,7 @@ export const DebugPanel: React.FC<DebugPanelProps> = ({
 
             {showRawJson && (
               <pre style={{ background: '#020617', padding: '1rem', borderRadius: '8px', marginTop: '0.75rem', overflowX: 'auto', fontSize: '0.75rem', color: '#94a3b8', maxHeight: '250px' }}>
-                {JSON.stringify(debugInfo, null, 2)}
+                {JSON.stringify({ sessionId, turnCount, maxTurns, clarificationHistory, ...debugInfo }, null, 2)}
               </pre>
             )}
           </div>

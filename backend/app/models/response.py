@@ -54,17 +54,49 @@ class Context(BaseModel):
 class TroubleshootResponse(BaseModel):
     """Top-level prototype troubleshooting response model.
 
-    Supports both single-turn and multi-turn interactive conversation flows.
+    Supports single-turn, multi-turn clarification flows, and explicit diagnostic states.
     """
 
-    status: Literal["diagnosis_ready", "clarification_required", "out_of_scope", "no_match", "error"] = Field(
+    status: Literal[
+        "diagnosis_ready",
+        "clarification_required",
+        "insufficient_information",
+        "unsupported",
+        "out_of_scope",
+        "no_match",
+        "error",
+    ] = Field(
         default="diagnosis_ready", description="Current status of the troubleshooting request"
     )
     session_id: Optional[str] = Field(
         default=None, description="Active session ID for continuing the troubleshooting conversation"
     )
+    turn_count: Optional[int] = Field(
+        default=None, description="Current turn number in multi-turn conversation"
+    )
+    max_turns: Optional[int] = Field(
+        default=None, description="Maximum permitted diagnostic turns"
+    )
     clarification: Optional[ClarificationQuestion] = Field(
         default=None, description="Clarification question when ambiguity exists and confidence is low"
+    )
+    clarification_history: Optional[List[dict]] = Field(
+        default=None, description="Historical list of past clarification questions and answers"
+    )
+    final_problem_id: Optional[str] = Field(
+        default=None, description="Matched grounded knowledge base problem ID"
+    )
+    domain: Optional[str] = Field(
+        default=None, description="Identified device domain (battery, display, camera, performance)"
+    )
+    canonical_symptom: Optional[str] = Field(
+        default=None, description="Canonical normalized technical symptom text"
+    )
+    extracted_signals: Optional[List[str]] = Field(
+        default=None, description="Extracted reasoning signals and keywords"
+    )
+    confidence: Optional[float] = Field(
+        default=None, ge=0.0, le=1.0, description="Confidence score of the diagnosis"
     )
     timeline: Optional[List[TimelineEvent]] = Field(
         default=None, description="Diagnostic progression timeline events"

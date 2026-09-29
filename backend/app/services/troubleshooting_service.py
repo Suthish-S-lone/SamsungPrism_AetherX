@@ -178,6 +178,10 @@ class TroubleshootingService:
                 )
             return StructuredTroubleshootResponse(
                 status="out_of_scope",
+                domain=None,
+                canonical_symptom=None,
+                extracted_signals=["out_of_scope_topic"],
+                confidence=0.0,
                 contexts=[],
                 fallback=(
                     "This assistant is designed specifically for Samsung device troubleshooting "
@@ -257,6 +261,7 @@ class TroubleshootingService:
                 status="clarification_required",
                 clarification_question=clarification_q,
                 confidence=top_candidate.score if top_candidate else 0.0,
+                max_turns=settings.MAX_DIAGNOSTIC_TURNS,
             )
             now_ts = time.time()
             timeline = [
@@ -313,7 +318,14 @@ class TroubleshootingService:
             return StructuredTroubleshootResponse(
                 status="clarification_required",
                 session_id=session.session_id,
+                turn_count=session.turn_count,
+                max_turns=session.max_turns,
                 clarification=clarification_q,
+                clarification_history=session.clarification_history,
+                domain=qu_result.domain,
+                canonical_symptom=qu_result.canonical_symptom,
+                extracted_signals=qu_result.extracted_signals,
+                confidence=round(top_candidate.score, 4) if top_candidate else 0.0,
                 timeline=timeline,
                 contexts=[],
                 fallback="Please select the option that best describes your situation to receive targeted troubleshooting steps.",
@@ -322,9 +334,12 @@ class TroubleshootingService:
 
         contexts: List[Context] = []
         fallback_msg: Optional[str] = None
-        status_str = "diagnosis_ready" if is_match else "no_match"
+        status_str = "diagnosis_ready" if is_match else "out_of_scope"
         timeline: Optional[List[TimelineEvent]] = None
         session_id_out: Optional[str] = None
+        final_pid: Optional[str] = None
+        domain_out: Optional[str] = qu_result.domain
+        conf_out: float = 0.0
 
         if is_match and top_candidate:
             ctx = self._build_context_for_problem(top_candidate.problem_id, top_candidate.score)
@@ -337,8 +352,12 @@ class TroubleshootingService:
                 status="diagnosis_ready",
                 selected_problem_id=top_candidate.problem_id,
                 confidence=top_candidate.score,
+                max_turns=settings.MAX_DIAGNOSTIC_TURNS,
             )
             session_id_out = session.session_id
+            final_pid = top_candidate.problem_id
+            domain_out = top_candidate.domain
+            conf_out = round(top_candidate.score, 4)
             now_ts = time.time()
             timeline = [
                 TimelineEvent(
@@ -403,6 +422,13 @@ class TroubleshootingService:
         return StructuredTroubleshootResponse(
             status=status_str,
             session_id=session_id_out,
+            turn_count=1,
+            max_turns=settings.MAX_DIAGNOSTIC_TURNS,
+            final_problem_id=final_pid,
+            domain=domain_out,
+            canonical_symptom=qu_result.canonical_symptom,
+            extracted_signals=qu_result.extracted_signals,
+            confidence=conf_out,
             timeline=timeline,
             contexts=contexts,
             fallback=fallback_msg,
@@ -426,11 +452,53 @@ class TroubleshootingService:
             )
 
         # Refine query and signals using selected clarification option
-        refined_query, new_signals, target_problem_id = self.clarification_service.refine_with_answer(
+        refined_query, new_signals, target_problem_id, is_irrelevant = self.clarification_service.refine_with_answer(
             session=session,
             answer_id=request.answer_id,
             user_response_text=request.user_response_text,
         )
+
+        # Turn limit & Irrelevant response handling (Phase 7.3)
+        if is_irrelevant or session.turn_count > session.max_turns:
+            session.status = "insufficient_information"
+            now_ts = time.time()
+            timeline = [
+                TimelineEvent(
+                    step="query_received",
+                    label="Complaint Received",
+                    status="completed",
+                    detail=f'User submitted: "{session.original_query}"',
+                    timestamp=session.created_at,
+                ),
+                TimelineEvent(
+                    step="clarification_requested",
+                    label="Clarification Requested",
+                    status="completed",
+                    detail=session.clarification_question.question if session.clarification_question else "Clarification",
+                    timestamp=session.created_at,
+                ),
+                TimelineEvent(
+                    step="insufficient_information",
+                    label="Insufficient Information",
+                    status="completed",
+                    detail="Diagnosis halted after turn limit or irrelevant response.",
+                    timestamp=now_ts,
+                ),
+            ]
+            return StructuredTroubleshootResponse(
+                status="insufficient_information",
+                session_id=session.session_id,
+                turn_count=session.turn_count,
+                max_turns=session.max_turns,
+                clarification_history=session.clarification_history,
+                domain=session.domain,
+                canonical_symptom=session.canonical_symptom,
+                extracted_signals=session.extracted_signals,
+                confidence=0.0,
+                timeline=timeline,
+                contexts=[],
+                fallback="I don't have enough information to confidently identify the issue. Please describe what you see, when the problem occurs, and what you were doing immediately before it happened.",
+            )
 
         t_qu_start = time.perf_counter()
         qu_result = self.qu_service.analyze(refined_query)
@@ -470,17 +538,23 @@ class TroubleshootingService:
         contexts: List[Context] = []
         fallback_msg: Optional[str] = None
         status_str = "diagnosis_ready"
+        final_pid = None
+        domain_out = qu_result.domain or session.domain
+        conf_out = 0.0
 
-        if top_candidate:
+        if top_candidate and top_candidate.score >= (threshold or 0.40):
             ctx = self._build_context_for_problem(top_candidate.problem_id, top_candidate.score)
             if ctx:
                 contexts.append(ctx)
             session.status = "diagnosis_ready"
             session.selected_problem_id = top_candidate.problem_id
             session.confidence = top_candidate.score
+            final_pid = top_candidate.problem_id
+            domain_out = top_candidate.domain
+            conf_out = round(top_candidate.score, 4)
         else:
-            status_str = "no_match"
-            fallback_msg = "Could not identify troubleshooting steps after clarification. Please describe the issue with more details."
+            status_str = "insufficient_information"
+            fallback_msg = "I don't have enough information to confidently identify the issue. Please describe what you see, when the problem occurs, and what you were doing immediately before it happened."
 
         now_ts = time.time()
         timeline = [
@@ -506,10 +580,10 @@ class TroubleshootingService:
                 timestamp=now_ts,
             ),
             TimelineEvent(
-                step="diagnosis_ready",
-                label="Refined Diagnosis Ready",
+                step="diagnosis_ready" if contexts else "insufficient_information",
+                label="Refined Diagnosis Ready" if contexts else "Insufficient Information",
                 status="completed",
-                detail=f"Grounded resolution identified: {top_candidate.problem if top_candidate else 'General Steps'} ({top_candidate.problem_id if top_candidate else 'N/A'}) with {top_candidate.score*100 if top_candidate else 0:.0f}% confidence",
+                detail=f"Grounded resolution identified: {top_candidate.problem if top_candidate else 'General Steps'} ({top_candidate.problem_id if top_candidate else 'N/A'}) with {top_candidate.score*100 if top_candidate else 0:.0f}% confidence" if contexts else fallback_msg,
                 timestamp=now_ts,
             ),
         ]
@@ -549,6 +623,14 @@ class TroubleshootingService:
         return StructuredTroubleshootResponse(
             status=status_str,
             session_id=session.session_id,
+            turn_count=session.turn_count,
+            max_turns=session.max_turns,
+            clarification_history=session.clarification_history,
+            final_problem_id=final_pid,
+            domain=domain_out,
+            canonical_symptom=qu_result.canonical_symptom,
+            extracted_signals=new_signals if new_signals else session.extracted_signals,
+            confidence=conf_out,
             timeline=timeline,
             contexts=contexts,
             fallback=fallback_msg,

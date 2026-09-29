@@ -221,6 +221,20 @@ class ClarificationService:
         """Retrieve an active session by UUID."""
         return self._sessions.get(session_id)
 
+    def reset_session(self, session_id: str) -> Optional[ConversationSession]:
+        """Reset an existing session to its initial baseline state."""
+        session = self._sessions.get(session_id)
+        if session:
+            session.turn_count = 1
+            session.current_query = session.original_query
+            session.clarification_answer_id = None
+            session.clarification_answer_label = None
+            session.clarification_history = []
+            session.selected_problem_id = None
+            session.status = "clarification_required" if session.clarification_question else "diagnosis_ready"
+            session.updated_at = time.time()
+        return session
+
     def create_session(
         self,
         query: str,
@@ -229,6 +243,7 @@ class ClarificationService:
         clarification_question: Optional[ClarificationQuestion] = None,
         selected_problem_id: Optional[str] = None,
         confidence: float = 0.0,
+        max_turns: int = 3,
     ) -> ConversationSession:
         """Create and store a new multi-turn conversation session."""
         session_id = str(uuid.uuid4())
@@ -240,8 +255,11 @@ class ClarificationService:
             domain=qu_result.domain,
             canonical_symptom=qu_result.canonical_symptom,
             extracted_signals=qu_result.extracted_signals,
+            turn_count=1,
+            max_turns=max_turns,
             clarification_question=clarification_question,
             selected_problem_id=selected_problem_id,
+            clarification_history=[],
             confidence=confidence,
             status=status,
             created_at=now,
@@ -269,7 +287,7 @@ class ClarificationService:
         q_lower = query.lower().strip()
 
         # 1. Thermal / Heat Ambiguity
-        if re.search(r"\b(hot|overheating|gets\s+hot|heats\s+up|warm|burning|heating)\b", q_lower):
+        if re.search(r"\b(hot|hott|overheating|overheat|gets\s+hot|heats\s+up|warm|burning|heating|temperature\s+high|temp\s+high)\b", q_lower):
             has_charging = bool(re.search(r"\b(charging|charger|plugged|cable)\b", q_lower))
             has_normal = bool(re.search(r"\b(reading|browsing|normal\s+use|scrolling)\b", q_lower))
             has_idle = bool(re.search(r"\b(idle|standby|overnight|pocket|desk|locked|sitting|resting)\b", q_lower))
@@ -279,8 +297,8 @@ class ClarificationService:
             if specific_count == 0:
                 return CLARIFICATION_CATALOG["clarify_battery_heat"]
 
-        # 2. General Battery Drain Ambiguity (vague complaints like "battery dying fast", "battery issue")
-        if re.search(r"\b(battery|charge|power)\b", q_lower) and re.search(r"\b(draining|dies|running\s+out|bad|issue|problem|short)\b", q_lower):
+        # 2. General Battery Drain Ambiguity
+        if re.search(r"\b(battery|batry|charge|power)\b", q_lower) and re.search(r"\b(draining|drain|dies|running\s+out|bad|issue|issues|problem|problems|trouble|troubles|short)\b", q_lower):
             has_fast = bool(re.search(r"\b(fast|rapid|rapidly|quickly|quick)\b", q_lower))
             has_idle = bool(re.search(r"\b(idle|overnight|sleep|standby|morning|sitting|resting)\b", q_lower))
             has_update = bool(re.search(r"\b(update|upgrade|patch|firmware)\b", q_lower))
@@ -288,11 +306,11 @@ class ClarificationService:
             has_power_save = bool(re.search(r"\b(power\s+saving|battery\s+saver|save\s+power)\b", q_lower))
             has_charge_slow = bool(re.search(r"\b(slow|takes\s+long|hours|cable)\b", q_lower))
 
-            if not any([has_fast, has_idle, has_update, has_app, has_power_save, has_charge_slow]) and len(q_lower.split()) <= 4:
+            if not any([has_fast, has_idle, has_update, has_app, has_power_save, has_charge_slow]) and len(q_lower.split()) <= 5:
                 return CLARIFICATION_CATALOG["clarify_battery_drain"]
 
-        # 3. Display Ambiguity (vague complaints like "screen is acting weird", "display issues")
-        if re.search(r"\b(screen|display)\b", q_lower) and re.search(r"\b(acting\s+weird|problem|issue|glitching|wrong|not\s+working)\b", q_lower):
+        # 3. Display Ambiguity
+        if re.search(r"\b(screen|scrn|display)\b", q_lower) and re.search(r"\b(acting\s+weird|problem|problems|issue|issues|trouble|troubles|glitching|wrong|not\s+working)\b", q_lower):
             has_brightness = bool(re.search(r"\b(bright|brightness|dim|dark|sunlight|flicker|flickring)\b", q_lower))
             has_timeout = bool(re.search(r"\b(timeout|turns\s+off|goes\s+dark|sleeps)\b", q_lower))
             has_touch = bool(re.search(r"\b(touch|gesture|swipe|tap|unresponsive)\b", q_lower))
@@ -301,8 +319,8 @@ class ClarificationService:
             if not any([has_brightness, has_timeout, has_touch, has_pocket]):
                 return CLARIFICATION_CATALOG["clarify_display_issue"]
 
-        # 4. Camera Ambiguity (vague complaints like "camera not working", "camera issues")
-        if re.search(r"\b(camera|cam)\b", q_lower) and re.search(r"\b(not\s+working|problem|issue|acting\s+up|broken|bad)\b", q_lower):
+        # 4. Camera Ambiguity
+        if re.search(r"\b(camera|cam|camra)\b", q_lower) and re.search(r"\b(not\s+working|problem|problems|issue|issues|trouble|troubles|acting\s+up|broken|bad)\b", q_lower):
             has_freeze = bool(re.search(r"\b(freeze|freezes|freezing|crash|crashes|locks\s+up)\b", q_lower))
             has_slow = bool(re.search(r"\b(slow|delay|takes\s+time|startup|lag)\b", q_lower))
             has_blurry = bool(re.search(r"\b(blurry|blur|focus|fuzzy|out\s+of\s+focus)\b", q_lower))
@@ -311,8 +329,8 @@ class ClarificationService:
             if not any([has_freeze, has_slow, has_blurry, has_save]):
                 return CLARIFICATION_CATALOG["clarify_camera_issue"]
 
-        # 5. Performance Ambiguity (vague complaints like "my phone is slow", "device is laggy")
-        if re.search(r"\b(slow|lag|laggy|sluggish|slowness|speed)\b", q_lower) and not re.search(r"\b(camera|charging|download|internet|wifi)\b", q_lower):
+        # 5. Performance Ambiguity
+        if re.search(r"\b(slow|lag|laggy|sluggish|slowness|speed|slowdown|performance)\b", q_lower) and not re.search(r"\b(camera|charging|download|internet|wifi)\b", q_lower):
             has_freeze = bool(re.search(r"\b(freeze|freezes|freezing|frozen|crash|crashes|locks\s+up)\b", q_lower))
             has_multitask = bool(re.search(r"\b(multiple\s+apps|many\s+apps|switching|multitask|ram|memory)\b", q_lower))
             has_storage = bool(re.search(r"\b(storage|space|disk|full|gb)\b", q_lower))
@@ -320,7 +338,7 @@ class ClarificationService:
             has_restart = bool(re.search(r"\b(restarts|reboot)\b", q_lower))
             has_update = bool(re.search(r"\b(update|upgrade|firmware|patch)\b", q_lower))
 
-            if not any([has_freeze, has_multitask, has_storage, has_newapp, has_restart, has_update]) and len(q_lower.split()) <= 4:
+            if not any([has_freeze, has_multitask, has_storage, has_newapp, has_restart, has_update]) and len(q_lower.split()) <= 5:
                 return CLARIFICATION_CATALOG["clarify_performance_issue"]
 
         return None
@@ -330,14 +348,14 @@ class ClarificationService:
         session: ConversationSession,
         answer_id: Optional[str],
         user_response_text: Optional[str] = None,
-    ) -> Tuple[str, List[str], Optional[str]]:
-        """Process user's selected clarification answer and return refined query, signals, and target problem ID."""
+    ) -> Tuple[str, List[str], Optional[str], bool]:
+        """Process user's selected clarification answer and return refined query, signals, target problem ID, and is_irrelevant flag."""
+        session.turn_count += 1
+        now_ts = time.time()
         question = session.clarification_question
-        if not question:
-            return session.current_query, session.extracted_signals, None
 
         selected_option: Optional[ClarificationOption] = None
-        if answer_id:
+        if answer_id and question:
             for opt in question.options:
                 if opt.id == answer_id:
                     selected_option = opt
@@ -353,14 +371,76 @@ class ClarificationService:
             refined_query = f"{session.original_query} {selected_option.label} {selected_option.signal.replace('_', ' ')}"
             session.current_query = refined_query
             session.selected_problem_id = selected_option.target_problem_id
-            session.updated_at = time.time()
-            return refined_query, new_signals, selected_option.target_problem_id
+            session.clarification_history.append({
+                "turn": session.turn_count,
+                "question_id": question.id if question else None,
+                "answer_id": selected_option.id,
+                "label": selected_option.label,
+                "timestamp": now_ts,
+            })
+            session.updated_at = now_ts
+            return refined_query, new_signals, selected_option.target_problem_id, False
 
         if user_response_text:
-            session.clarification_answer_label = user_response_text
-            refined_query = f"{session.original_query} {user_response_text}"
-            session.current_query = refined_query
-            session.updated_at = time.time()
-            return refined_query, session.extracted_signals, None
+            text_clean = user_response_text.strip()
+            if not text_clean:
+                # Empty or whitespace only follow-up
+                session.clarification_history.append({
+                    "turn": session.turn_count,
+                    "question_id": question.id if question else None,
+                    "user_text": "",
+                    "timestamp": now_ts,
+                })
+                session.updated_at = now_ts
+                return session.current_query, session.extracted_signals, None, True
 
-        return session.current_query, session.extracted_signals, None
+            text_lower = text_clean.lower()
+
+            # Check if answer is completely irrelevant / noise
+            troubleshooting_keywords = [
+                "battery", "charge", "charging", "drain", "power", "hot", "warm", "heat", "overheating",
+                "screen", "display", "brightness", "dim", "dark", "flicker", "touch", "pocket", "timeout",
+                "camera", "photo", "photos", "picture", "pictures", "video", "record", "lens", "focus", "blur", "blurry",
+                "slow", "lag", "laggy", "sluggish", "freeze", "freezes", "freezing", "ram", "memory", "storage", "full", "update"
+            ]
+            has_domain_keywords = any(kw in text_lower for kw in troubleshooting_keywords)
+
+            # Check for contradictory answer (user corrects the domain/symptom)
+            contradicts = False
+            contradictory_cues = ["actually", "not", "instead", "fine", "rather", "different", "does not", "doesn't"]
+            if any(cue in text_lower for cue in contradictory_cues) and has_domain_keywords:
+                contradicts = True
+
+            if not has_domain_keywords and len(text_lower.split()) <= 10:
+                # Irrelevant response (e.g. "I like ice cream", "hello who is this")
+                session.clarification_history.append({
+                    "turn": session.turn_count,
+                    "question_id": question.id if question else None,
+                    "user_text": text_clean,
+                    "is_irrelevant": True,
+                    "timestamp": now_ts,
+                })
+                session.updated_at = now_ts
+                return session.original_query, session.extracted_signals, None, True
+
+            session.clarification_answer_label = text_clean
+            session.clarification_history.append({
+                "turn": session.turn_count,
+                "question_id": question.id if question else None,
+                "user_text": text_clean,
+                "is_contradictory": contradicts,
+                "timestamp": now_ts,
+            })
+
+            # If user explicitly contradicts, substitute query with new description
+            if contradicts:
+                refined_query = text_clean
+            else:
+                refined_query = f"{session.original_query} {text_clean}"
+
+            session.current_query = refined_query
+            session.updated_at = now_ts
+            return refined_query, session.extracted_signals, None, False
+
+        # No answer provided
+        return session.current_query, session.extracted_signals, None, True

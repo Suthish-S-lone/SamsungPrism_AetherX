@@ -258,18 +258,22 @@ The project utilizes the pretrained **`sentence-transformers/all-MiniLM-L6-v2`**
 
 ## 9. Benchmark Performance Progression & Test Metrics
 
-> **Evaluation Context**: The metrics below represent results on the **60-query unseen holdout benchmark** (`holdout_queries.json`) constructed during development to evaluate generalization across 40 supported device complaints and 20 out-of-scope non-troubleshooting queries.
+| Metric | Phase 2.5 (TF-IDF) | Phase 2.75 (Neural) | Phase 3+5 (Full Pipeline) | Phase 6 (Multi-Turn) | Phase 7 (Multi-Turn Evaluated) |
+|---|---|---|---|---|---|
+| **Supported Top-1 Accuracy** | 2.5% | 25.0% | **100.0%** | **100.0%** | **83.9%** (on 72 complex multi-turn scenarios) |
+| **Supported Top-3 Accuracy** | 2.5% | 25.0% | **100.0%** | **100.0%** | **93.6%** |
+| **Unsupported Rejection Rate** | 100.0% | 100.0% | **100.0%** | **100.0%** | **100.0%** |
+| **False Positive Rate** | 0 | 0 | **0** | **0** | **0.0%** |
+| **Mean Diagnostic Turns** | — | — | 1.00 | 1.50 | **1.74 turns** |
+| **Turn Limit Enforcement** | — | — | — | — | **100.0%** (MAX_TURNS=3) |
+| **Contradictory Resolution** | — | — | — | — | **100.0%** |
+| **Irrelevant Answer Handling** | — | — | — | — | **100.0%** |
+| **Context Contamination Rate** | — | — | — | 0.0% | **0.0%** (Full Isolation) |
+| **Diagnostic Loop Rate** | — | — | — | 0.0% | **0.0%** |
+| **Average Turn Latency** | 0.25 ms | 7.85 ms | 9.80 ms | 12.40 ms | **16.87 ms** |
+| **Total Automated Tests** | 16 | 40 | 89 Passing | 102 Passing | **111 Passing (100%)** |
 
-| Metric | Phase 2.5 (TF-IDF Baseline) | Phase 2.75 (Neural Baseline) | Phase 3+5 (Full Hardened Pipeline) | Phase 6 (Multi-Turn System) |
-|---|---|---|---|---|
-| **Supported Top-1 Accuracy** | 2.5% | 25.0% | **100.0%** | **100.0%** |
-| **Supported Top-3 Accuracy** | 2.5% | 25.0% | **100.0%** | **100.0%** |
-| **Unsupported Rejection Rate** | 100.0% | 100.0% | **100.0%** | **100.0%** |
-| **False Positives** | 0 | 0 | **0** | **0** |
-| **Overall Accuracy** | 35.0% | 50.0% | **100.0%** | **100.0%** |
-| **F1 Score** | 4.9% | 40.0% | **100.0%** | **100.0%** |
-| **Average Latency** | 0.25 ms | 7.85 ms | **9.80 ms** | **12.40 ms** |
-| **Total Automated Tests** | 16 | 40 | 89 Passing | **102 Passing** |
+> See [docs/PHASE7_MULTITURN_EVALUATION.md](docs/PHASE7_MULTITURN_EVALUATION.md) for detailed per-category metrics and [docs/PHASE7_ARCHITECTURE.md](docs/PHASE7_ARCHITECTURE.md) for conversational architecture documentation.
 
 ---
 

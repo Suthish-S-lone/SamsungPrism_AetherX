@@ -1,5 +1,5 @@
 /**
- * TypeScript interfaces matching SmartGuide FastAPI backend response models.
+ * TypeScript interfaces matching SmartGuide FastAPI backend response models (Phase 7).
  */
 
 export interface Step {
@@ -92,6 +92,17 @@ export interface TimelineEvent {
   timestamp?: number | null;
 }
 
+export interface ClarificationTurnRecord {
+  turn: number;
+  clarification_id: string;
+  question: string;
+  answer_id?: string | null;
+  answer_label?: string | null;
+  user_text?: string | null;
+  resolved_problem_id?: string | null;
+  timestamp: number;
+}
+
 export interface ContinueTroubleshootRequest {
   session_id: string;
   clarification_id?: string | null;
@@ -100,9 +111,24 @@ export interface ContinueTroubleshootRequest {
 }
 
 export interface StructuredTroubleshootResponse {
-  status: 'diagnosis_ready' | 'clarification_required' | 'out_of_scope' | 'no_match' | 'error';
+  status:
+    | 'diagnosis_ready'
+    | 'clarification_required'
+    | 'insufficient_information'
+    | 'unsupported'
+    | 'out_of_scope'
+    | 'no_match'
+    | 'error';
   session_id?: string | null;
+  turn_count?: number;
+  max_turns?: number;
   clarification?: ClarificationQuestion | null;
+  clarification_history?: ClarificationTurnRecord[];
+  final_problem_id?: string | null;
+  domain?: string | null;
+  canonical_symptom?: string | null;
+  extracted_signals?: string[];
+  confidence?: number;
   timeline?: TimelineEvent[] | null;
   contexts: Context[];
   fallback: string | null;

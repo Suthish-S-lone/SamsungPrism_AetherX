@@ -1,1 +1,3 @@
-"""Evaluation harness module for benchmark test queries (to be implemented in later phases)."""
+"""
+Evaluation package for SmartGuide multi-turn and single-turn benchmark evaluation.
+"""

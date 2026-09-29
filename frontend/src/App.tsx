@@ -263,6 +263,10 @@ export const App: React.FC = () => {
         {/* Technical Diagnostics Inspector */}
         <DebugPanel
           debugInfo={apiResponse?.debug_info}
+          sessionId={apiResponse?.session_id}
+          turnCount={apiResponse?.turn_count}
+          maxTurns={apiResponse?.max_turns}
+          clarificationHistory={apiResponse?.clarification_history}
           isOpen={debugMode}
           onToggle={() => setDebugMode(!debugMode)}
         />

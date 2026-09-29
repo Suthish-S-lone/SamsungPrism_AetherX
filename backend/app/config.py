@@ -42,6 +42,9 @@ class Settings(BaseSettings):
     CACHE_TTL_SECONDS: int = 3600
     CACHE_SIMILARITY_THRESHOLD: float = 0.92
 
+    # Multi-Turn Diagnostic Conversation Configuration (Phase 7)
+    MAX_DIAGNOSTIC_TURNS: int = 3
+
     # Development Dataset Directory
     DATA_DIR: Path = Field(default_factory=lambda: ROOT_DIR / "data" / "development")
 
