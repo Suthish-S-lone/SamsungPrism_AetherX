@@ -30,7 +30,7 @@ All metrics were computed locally on CPU using the standard PyTorch + `sentence-
 | **9. Contradictory Answer Resolution Rate** | $\ge 90.0\%$ | **`100.00%`** | PASS |
 | **10. Irrelevant Answer Handling Rate** | $\ge 95.0\%$ | **`100.00%`** | PASS |
 | **11. Context Contamination Rate** | $0.0\%$ | **`0.00%`** | PASS |
-| **12. Mean End-to-End Latency per Turn** | $< 200\text{ ms}$ | **`12.00 ms`** | PASS |
+| **12. Mean End-to-End Latency per Turn** | $< 200\text{ ms}$ | **`12.28 ms`** | PASS |
 | **13. Diagnostic Loop Rate** | $0.0\%$ | **`0.00%`** | PASS |
 | **14. Session Isolation Verification** | $100.0\%$ | **`100.00%`** | PASS |
 
@@ -40,20 +40,20 @@ All metrics were computed locally on CPU using the standard PyTorch + `sentence-
 
 | Category | Category Name | Total Scenarios | Success Rate | Mean Turns | Mean Latency |
 |---|---|---|---|---|---|
-| `A` | Clear Supported Query | 8 | `100.0%` | `1.00` | `15.2 ms` |
-| `B` | Ambiguous Supported Query | 8 | `100.0%` | `2.00` | `12.0 ms` |
-| `C` | Battery / Thermal Ambiguity | 5 | `100.0%` | `2.00` | `13.9 ms` |
-| `D` | Display Ambiguity | 5 | `80.0%` | `1.80` | `11.2 ms` |
-| `E` | Camera Ambiguity | 5 | `80.0%` | `1.80` | `11.6 ms` |
-| `F` | Performance Ambiguity | 5 | `100.0%` | `2.00` | `12.6 ms` |
-| `G` | Clarification-Answer Option Flow | 8 | `100.0%` | `2.00` | `13.3 ms` |
-| `H` | Custom-Text Clarification | 7 | `71.4%` | `2.00` | `12.9 ms` |
+| `A` | Clear Supported Query | 8 | `100.0%` | `1.00` | `16.3 ms` |
+| `B` | Ambiguous Supported Query | 8 | `100.0%` | `2.00` | `13.1 ms` |
+| `C` | Battery / Thermal Ambiguity | 5 | `100.0%` | `2.00` | `13.1 ms` |
+| `D` | Display Ambiguity | 5 | `80.0%` | `1.80` | `11.1 ms` |
+| `E` | Camera Ambiguity | 5 | `80.0%` | `1.80` | `11.3 ms` |
+| `F` | Performance Ambiguity | 5 | `100.0%` | `2.00` | `14.1 ms` |
+| `G` | Clarification-Answer Option Flow | 8 | `100.0%` | `2.00` | `13.4 ms` |
+| `H` | Custom-Text Clarification | 7 | `71.4%` | `2.00` | `12.8 ms` |
 | `I` | Unsupported Query | 7 | `100.0%` | `1.00` | `6.5 ms` |
-| `J` | Noisy / Typo Query | 4 | `25.0%` | `1.25` | `10.5 ms` |
-| `K` | Cross-Domain Query | 3 | `0.0%` | `1.00` | `12.9 ms` |
-| `L` | Session Reset Scenario | 2 | `100.0%` | `2.00` | `13.3 ms` |
-| `M` | Contradictory Answer Scenario | 2 | `100.0%` | `2.00` | `12.5 ms` |
-| `N` | Irrelevant Answer Scenario | 3 | `100.0%` | `2.00` | `5.8 ms` |
+| `J` | Noisy / Typo Query | 4 | `25.0%` | `1.25` | `10.0 ms` |
+| `K` | Cross-Domain Query | 3 | `0.0%` | `1.00` | `12.3 ms` |
+| `L` | Session Reset Scenario | 2 | `100.0%` | `2.00` | `13.2 ms` |
+| `M` | Contradictory Answer Scenario | 2 | `100.0%` | `2.00` | `13.3 ms` |
+| `N` | Irrelevant Answer Scenario | 3 | `100.0%` | `2.00` | `6.7 ms` |
 
 ---
 

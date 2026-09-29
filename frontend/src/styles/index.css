@@ -757,6 +757,334 @@ button, input, textarea, select {
   margin-top: 0.5rem;
 }
 
+/* Global SVG safety constraint */
+svg {
+  max-width: 100%;
+  max-height: 100%;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Multi-Turn Diagnostic Timeline (Phase 6 / Phase 7)
+   ========================================================================== */
+.timeline-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.timeline-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.timeline-list {
+  position: relative;
+  padding-left: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.timeline-list::before {
+  content: '';
+  position: absolute;
+  left: 0.65rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: var(--border-light);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.timeline-node {
+  position: absolute;
+  left: -1.75rem;
+  top: 0.15rem;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  z-index: 2;
+  box-shadow: 0 0 0 3px var(--bg-card);
+}
+
+.timeline-node.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #ffffff;
+  animation: pulse 1.8s infinite;
+}
+
+.timeline-node.completed {
+  border-color: var(--success);
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.timeline-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline-label-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.timeline-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.timeline-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.timeline-detail {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   Multi-Turn Clarification View (Phase 6 / Phase 7)
+   ========================================================================== */
+.clarification-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.clarification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.clarification-step-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.clarification-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.clarification-prompt {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.clarification-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.clarification-option-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-light);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+  user-select: none;
+  width: 100%;
+}
+
+.clarification-option-card:hover {
+  border-color: #cbd5e1;
+  background: var(--bg-card-hover);
+  transform: translateY(-1px);
+}
+
+.clarification-option-card.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.clarification-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.clarification-option-card:hover .clarification-radio {
+  border-color: var(--text-muted);
+}
+
+.clarification-option-card.selected .clarification-radio {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.clarification-radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.clarification-option-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.clarification-option-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.clarification-option-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.clarification-option-card.selected .clarification-option-label {
+  color: var(--primary-dark);
+}
+
+.clarification-option-index {
+  font-size: 0.72rem;
+  font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+  color: var(--text-muted);
+}
+
+.clarification-option-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  line-height: 1.45;
+}
+
+.clarification-custom-card {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-light);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.clarification-custom-card:hover {
+  border-color: #cbd5e1;
+  background: var(--bg-card-hover);
+}
+
+.clarification-custom-card.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.clarification-textarea {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: #ffffff;
+  color: var(--text-main);
+  resize: vertical;
+  min-height: 70px;
+  outline: none;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.clarification-textarea:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(3, 129, 254, 0.15);
+}
+
+.clarification-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-light);
+  gap: 1rem;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+}
+
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .hero-title {
@@ -765,7 +1093,7 @@ button, input, textarea, select {
   .main-content {
     padding: 1.25rem 1rem 3rem;
   }
-  .card {
+  .card, .clarification-card {
     padding: 1.25rem;
   }
   .search-container {
@@ -776,9 +1104,14 @@ button, input, textarea, select {
   .btn-primary {
     justify-content: center;
   }
+  .clarification-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
   .phone-mockup {
     height: 95vh;
     border-radius: 20px;
     border-width: 4px;
   }
 }
+

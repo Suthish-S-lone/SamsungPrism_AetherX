@@ -1,4 +1,5 @@
 import React from 'react';
+import { Activity, Check, HelpCircle, AlertCircle } from 'lucide-react';
 import type { TimelineEvent } from '../types/api';
 
 interface ConversationTimelineProps {
@@ -10,81 +11,66 @@ export const ConversationTimeline: React.FC<ConversationTimelineProps> = ({ time
     return null;
   }
 
-  const getStepIcon = (step: string, status: string) => {
+  const renderStepNode = (step: string, status: string, idx: number) => {
     if (status === 'active') {
       return (
-        <span className="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs animate-pulse font-bold">
-          !
-        </span>
+        <div className="timeline-node active" aria-label="Current active step">
+          <AlertCircle size={12} color="#ffffff" />
+        </div>
       );
     }
-    switch (step) {
-      case 'query_received':
-        return (
-          <span className="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs font-semibold">
-            1
-          </span>
-        );
-      case 'clarification_requested':
-        return (
-          <span className="w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs font-semibold">
-            ?
-          </span>
-        );
-      case 'clarification_answered':
-        return (
-          <span className="w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-semibold">
-            ✓
-          </span>
-        );
-      case 'diagnosis_ready':
-        return (
-          <span className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-xs font-bold">
-            ✓
-          </span>
-        );
-      default:
-        return (
-          <span className="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs">
-            •
-          </span>
-        );
+    if (status === 'completed') {
+      return (
+        <div className="timeline-node completed" aria-label="Completed step">
+          <Check size={12} color="#00a86b" />
+        </div>
+      );
     }
+    if (step === 'clarification_requested') {
+      return (
+        <div className="timeline-node" style={{ borderColor: 'var(--warning)', color: 'var(--warning)' }}>
+          <HelpCircle size={12} />
+        </div>
+      );
+    }
+    return (
+      <div className="timeline-node">
+        {idx + 1}
+      </div>
+    );
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-700/60 mb-6">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-xs font-bold tracking-wider uppercase text-slate-400 dark:text-slate-400 flex items-center gap-1.5">
-          <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-          Diagnostic Progression Timeline
-        </h3>
-        <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded-full">
+    <div className="timeline-card" role="region" aria-label="Diagnostic Progression Timeline">
+      <div className="timeline-header">
+        <div className="timeline-title">
+          <Activity size={16} color="var(--primary)" />
+          <span>Diagnostic Progression Timeline</span>
+        </div>
+        <span className="timeline-badge">
           {timeline.length} {timeline.length === 1 ? 'Step' : 'Steps'}
         </span>
       </div>
 
-      <div className="relative pl-6 space-y-3 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200 dark:before:bg-slate-700">
+      <div className="timeline-list">
         {timeline.map((event, idx) => (
-          <div key={idx} className="relative flex items-start gap-3">
-            <div className="absolute -left-6 top-0.5 bg-white dark:bg-slate-800 ring-4 ring-white dark:ring-slate-800 rounded-full">
-              {getStepIcon(event.step, event.status)}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-baseline gap-2">
-                <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
-                  {event.label}
-                </span>
+          <div key={idx} className="timeline-item">
+            {renderStepNode(event.step, event.status, idx)}
+            <div className="timeline-content">
+              <div className="timeline-label-row">
+                <span className="timeline-label">{event.label}</span>
                 {event.timestamp && (
-                  <span className="text-[10px] text-slate-400">
-                    {new Date(event.timestamp * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                  <span className="timeline-time">
+                    {new Date(event.timestamp * 1000).toLocaleTimeString([], {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      second: '2-digit',
+                    })}
                   </span>
                 )}
               </div>
               {event.detail && (
-                <p className="text-xs text-slate-600 dark:text-slate-300 mt-0.5 leading-relaxed">
+                <p className="timeline-detail">
                   {event.detail}
                 </p>
               )}
